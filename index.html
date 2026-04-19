@@ -844,6 +844,123 @@
             }
         }
 
+        /* 微信分享按钮 */
+        .wechat-share-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, #07c160 0%, #05a050 100%);
+            border: none;
+            color: white;
+            padding: 0.8rem 2rem;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(7, 193, 96, 0.3);
+        }
+
+        .wechat-share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(7, 193, 96, 0.5);
+        }
+
+        .share-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .share-option-btn {
+            background: rgba(26, 58, 58, 0.5);
+            border: 1px solid var(--cthulhu-teal);
+            color: var(--moon-pale);
+            padding: 1rem 1.5rem;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .share-option-btn:hover {
+            border-color: var(--gold-ancient);
+            color: var(--gold-ancient);
+        }
+
+        .share-preview {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid var(--cthulhu-teal);
+            padding: 1.5rem;
+            margin: 0 0 1rem 0;
+            text-align: left;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: var(--moon-pale);
+            word-break: break-all;
+        }
+
+        /* 测试导航按钮 */
+        .quiz-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2.5rem;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            background: rgba(26, 58, 58, 0.4);
+            border: 1px solid var(--cthulhu-teal);
+            color: var(--moon-pale);
+            padding: 0.9rem 2.2rem;
+            font-family: inherit;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            border-color: var(--gold-ancient);
+            color: var(--gold-ancient);
+            background: rgba(45, 90, 90, 0.4);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.prev-btn::before {
+            content: '◀';
+            font-size: 0.75rem;
+        }
+
+        .nav-btn.next-btn::after {
+            content: '▶';
+            font-size: 0.75rem;
+        }
+
+        /* 选项选中状态 */
+        .option-btn.selected {
+            background: rgba(45, 90, 90, 0.6);
+            border-color: var(--gold-ancient);
+            padding-left: 2rem;
+        }
+
+        .option-btn.selected::before {
+            left: 0.8rem;
+        }
+
         /* 响应式 */
         @media (max-width: 768px) {
             h1 {
@@ -1037,6 +1154,9 @@
                 唤醒沉睡的灵魂
             </button>
             <div class="free-badge">首次测试 · 免费</div>
+            <button class="wechat-share-btn" onclick="openWechatShare()">
+                💬 分享到微信
+            </button>
         </div>
 
         <div class="types-showcase">
@@ -1138,7 +1258,7 @@
 
             <div class="share-section">
                 <p style="color: var(--cthulhu-teal); margin-bottom: 1rem;">分享你的觉醒原型</p>
-                <button class="share-btn" onclick="shareResult('wechat')">微信</button>
+                <button class="wechat-share-btn" onclick="openWechatShare()">💬 分享到微信</button>
                 <button class="share-btn" onclick="shareResult('weibo')">微博</button>
                 <button class="share-btn" onclick="shareResult('copy')">复制链接</button>
             </div>
@@ -1506,6 +1626,7 @@
         
         let currentQuestion = 0;
         let userScores = {};
+        let userAnswers = [];
         let hasPaid = false;
         let visitorId = null;
 
@@ -1571,31 +1692,112 @@
                 btn.className = 'option-btn';
                 btn.textContent = option.text;
                 btn.onclick = () => selectOption(index);
+                // 恢复之前的选择状态
+                if (userAnswers[currentQuestion] === index) {
+                    btn.classList.add('selected');
+                }
                 optionsContainer.appendChild(btn);
             });
+            
+            // 添加/更新导航按钮
+            let navContainer = document.querySelector('.quiz-nav');
+            if (!navContainer) {
+                navContainer = document.createElement('div');
+                navContainer.className = 'quiz-nav';
+                document.querySelector('.question-container').appendChild(navContainer);
+            }
+            
+            navContainer.innerHTML = '';
+            
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'nav-btn prev-btn';
+            prevBtn.textContent = '上一题';
+            prevBtn.disabled = currentQuestion === 0;
+            prevBtn.onclick = goToPreviousQuestion;
+            
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'nav-btn next-btn';
+            nextBtn.textContent = '下一题';
+            nextBtn.disabled = currentQuestion >= questions.length - 1 || userAnswers[currentQuestion] === undefined;
+            nextBtn.onclick = goToNextQuestion;
+            
+            navContainer.appendChild(prevBtn);
+            navContainer.appendChild(nextBtn);
+            
+            // 清除焦点，避免下一题有默认焦点残留
+            if (document.activeElement && document.activeElement.blur) {
+                document.activeElement.blur();
+            }
         }
 
         function selectOption(optionIndex) {
             const question = questions[currentQuestion];
             const selectedOption = question.options[optionIndex];
             
+            // 如果之前已经答过这题，先减去旧分数
+            if (userAnswers[currentQuestion] !== undefined) {
+                const oldOption = question.options[userAnswers[currentQuestion]];
+                for (let [key, value] of Object.entries(oldOption.scores)) {
+                    userScores[key] = (userScores[key] || 0) - value;
+                }
+            }
+            
+            // 记录答案
+            userAnswers[currentQuestion] = optionIndex;
+            
             // 累加分数
             for (let [key, value] of Object.entries(selectedOption.scores)) {
                 userScores[key] = (userScores[key] || 0) + value;
             }
             
-            currentQuestion++;
+            // 更新选中样式
+            document.querySelectorAll('.option-btn').forEach((btn, idx) => {
+                if (idx === optionIndex) {
+                    btn.classList.add('selected');
+                } else {
+                    btn.classList.remove('selected');
+                }
+            });
             
-            if (currentQuestion < questions.length) {
-                // 淡出效果
-                document.querySelector('.question-container').style.opacity = '0';
+            // 启用下一题按钮
+            const nextBtn = document.querySelector('.nav-btn.next-btn');
+            if (nextBtn) nextBtn.disabled = false;
+            
+            // 如果是最后一题，延迟后显示结果
+            if (currentQuestion >= questions.length - 1) {
                 setTimeout(() => {
-                    showQuestion();
-                    document.querySelector('.question-container').style.opacity = '1';
-                }, 300);
-            } else {
-                showLoading();
+                    showLoading();
+                }, 400);
+                return;
             }
+            
+            // 延迟后自动进入下一题
+            setTimeout(() => {
+                currentQuestion++;
+                showQuestion();
+            }, 400);
+        }
+
+        function goToPreviousQuestion() {
+            if (currentQuestion <= 0) return;
+            
+            // 减去当前题的分数
+            const question = questions[currentQuestion];
+            if (userAnswers[currentQuestion] !== undefined) {
+                const oldOption = question.options[userAnswers[currentQuestion]];
+                for (let [key, value] of Object.entries(oldOption.scores)) {
+                    userScores[key] = (userScores[key] || 0) - value;
+                }
+            }
+            
+            currentQuestion--;
+            showQuestion();
+        }
+
+        function goToNextQuestion() {
+            if (currentQuestion >= questions.length - 1) return;
+            currentQuestion++;
+            showQuestion();
         }
 
         function showLoading() {
@@ -1787,6 +1989,39 @@
             } else {
                 startQuiz();
             }
+        }
+
+        // ==================== 微信分享功能 ====================
+
+        function openWechatShare() {
+            const isResultPage = document.getElementById('resultPage').classList.contains('active');
+            let preview;
+            
+            if (isResultPage) {
+                const resultCode = document.getElementById('resultCode').textContent;
+                const resultName = document.getElementById('resultName').textContent;
+                preview = `【深渊回响】\n觉醒原型：${resultCode} · ${resultName}\n\n在拉莱耶的宫殿中，长眠的克苏鲁等待复苏...\n\n${window.location.href}`;
+            } else {
+                preview = `【深渊回响 - 克苏鲁神话人格觉醒测试】\n\n在拉莱耶的宫殿中，长眠的克苏鲁等待复苏...\n当星辰归位，你的灵魂将与哪位外神共鸣？\n\n${window.location.href}`;
+            }
+            
+            showModal('分享到微信', '');
+            const modalText = document.getElementById('modalText');
+            modalText.innerHTML = `
+                <div class="share-preview">${preview.replace(/\n/g, '<br>')}</div>
+                <div class="share-options">
+                    <button class="share-option-btn" onclick="copyWechatText()">📋 复制分享文案</button>
+                </div>
+            `;
+        }
+
+        function copyWechatText() {
+            const previewText = document.querySelector('.share-preview').innerText;
+            navigator.clipboard.writeText(previewText).then(() => {
+                showModal('复制成功', '文案已复制到剪贴板，快去微信粘贴分享吧！');
+            }).catch(() => {
+                showModal('复制失败', '请手动长按复制上方文案');
+            });
         }
 
         // ==================== 辅助功能 ====================
