@@ -690,6 +690,160 @@
             text-decoration: none;
         }
 
+        /* PC端大屏优化 */
+        @media (min-width: 1200px) {
+            .hero {
+                max-width: 1000px;
+                padding: 5rem 3rem;
+            }
+
+            h1 {
+                font-size: 4.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.4rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.3rem;
+                margin-bottom: 4rem;
+            }
+
+            .stats-bar {
+                gap: 4rem;
+                margin-bottom: 4rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .stat-label {
+                font-size: 0.95rem;
+            }
+
+            .types-showcase {
+                max-width: 1400px;
+                margin: 5rem auto;
+                padding: 3rem;
+            }
+
+            .types-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2rem;
+            }
+
+            .type-card {
+                padding: 2rem;
+            }
+
+            .type-code {
+                font-size: 1.8rem;
+            }
+
+            .type-name {
+                font-size: 1.1rem;
+            }
+
+            .type-desc {
+                font-size: 0.9rem;
+            }
+
+            .quiz-container {
+                max-width: 900px;
+                padding: 3rem;
+            }
+
+            .progress-bar {
+                margin-bottom: 4rem;
+            }
+
+            .question-container {
+                padding: 4rem;
+            }
+
+            .question-text {
+                font-size: 1.6rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .option-btn {
+                padding: 1.4rem 2rem;
+                font-size: 1.1rem;
+            }
+
+            .result-container {
+                max-width: 1000px;
+                padding: 3rem;
+            }
+
+            .result-card {
+                padding: 5rem;
+                margin-bottom: 4rem;
+            }
+
+            .arcana-symbol {
+                width: 180px;
+                height: 180px;
+                font-size: 5rem;
+            }
+
+            .result-code {
+                font-size: 4rem;
+            }
+
+            .result-name {
+                font-size: 2.2rem;
+            }
+
+            .result-description {
+                font-size: 1.2rem;
+                max-width: 800px;
+                line-height: 2.2;
+            }
+
+            .dimensions-grid {
+                max-width: 800px;
+                gap: 1.5rem;
+            }
+
+            .dimension-item {
+                padding: 1.2rem;
+            }
+
+            .payment-container {
+                max-width: 600px;
+                padding: 4rem;
+            }
+
+            .btn-primary {
+                padding: 1.4rem 3.5rem;
+                font-size: 1.2rem;
+            }
+
+            footer {
+                padding: 4rem 2rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* 平板端优化 */
+        @media (min-width: 769px) and (max-width: 1199px) {
+            .types-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .quiz-container {
+                max-width: 850px;
+            }
+
+            .result-container {
+                max-width: 900px;
+            }
+        }
+
         /* 响应式 */
         @media (max-width: 768px) {
             h1 {
