@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深渊回响 - 克苏鲁神话人格觉醒测试</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Noto+Serif+SC:wght@400;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void-black: #0a0a0f;
+            --deep-abyss: #0d1117;
+            --eldritch-green: #1a3a3a;
+            --cthulhu-teal: #2d5a5a;
+            --madness-purple: #2d1b4e;
+            --blood-crimson: #8b0000;
+            --gold-ancient: #c9a227;
+            --moon-pale: #e0e0e0;
+            --tentacle-shadow: rgba(0, 20, 40, 0.9);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', 'Cinzel', serif;
+            background: var(--void-black);
+            color: var(--moon-pale);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 星空背景 */
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(45, 90, 90, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(45, 27, 78, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(26, 58, 58, 0.1) 0%, transparent 70%),
+                var(--void-black);
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(201, 162, 39, 0.6), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1px 1px at 230px 80px, rgba(201, 162, 39, 0.5), transparent),
+                radial-gradient(2px 2px at 300px 150px, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 400px 200px, rgba(255,255,255,0.5), transparent),
+                radial-gradient(2px 2px at 500px 100px, rgba(201, 162, 39, 0.4), transparent);
+            background-size: 550px 250px;
+            animation: twinkle 8s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        /* 触手装饰 */
+        .tentacle {
+            position: fixed;
+            width: 300px;
+            height: 600px;
+            background: linear-gradient(180deg, 
+                transparent 0%, 
+                rgba(26, 58, 58, 0.3) 20%, 
+                rgba(26, 58, 58, 0.1) 60%, 
+                transparent 100%);
+            filter: blur(40px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .tentacle-left {
+            left: -100px;
+            top: 20%;
+            transform: rotate(-15deg);
+            animation: tentacle-sway 12s ease-in-out infinite;
+        }
+
+        .tentacle-right {
+            right: -100px;
+            top: 30%;
+            transform: rotate(15deg);
+            animation: tentacle-sway 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes tentacle-sway {
+            0%, 100% { transform: rotate(-15deg) translateY(0); }
+            50% { transform: rotate(-10deg) translateY(-20px); }
+        }
+
+        /* 页面容器 */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 2rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .page.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 首页样式 */
+        .hero {
+            text-align: center;
+            max-width: 800px;
+            padding: 3rem 2rem;
+        }
+
+        .ancient-symbol {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .ancient-symbol::before {
+            content: "☾";
+            font-size: 100px;
+            color: var(--gold-ancient);
+            text-shadow: 0 0 30px rgba(201, 162, 39, 0.5);
+            display: block;
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { text-shadow: 0 0 30px rgba(201, 162, 39, 0.5); }
+            50% { text-shadow: 0 0 60px rgba(201, 162, 39, 0.8), 0 0 100px rgba(201, 162, 39, 0.4); }
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--gold-ancient);
+            text-shadow: 0 0 40px rgba(201, 162, 39, 0.3);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--cthulhu-teal);
+            margin-bottom: 2rem;
+            letter-spacing: 0.3em;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--moon-pale);
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--gold-ancient);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--cthulhu-teal);
+            letter-spacing: 0.1em;
+        }
+
+        /* 按钮样式 */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--eldritch-green) 0%, var(--cthulhu-teal) 100%);
+            color: var(--gold-ancient);
+            border: 2px solid var(--gold-ancient);
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--cthulhu-teal) 0%, var(--eldritch-green) 100%);
+            box-shadow: 0 0 40px rgba(201, 162, 39, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .free-badge {
+            display: inline-block;
+            background: var(--gold-ancient);
+            color: var(--void-black);
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+        }
+
+        /* 人格类型展示 */
+        .types-showcase {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--gold-ancient);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-ancient), transparent);
+            margin: 1rem auto;
+        }
+
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .type-card {
+            background: linear-gradient(135deg, rgba(26, 58, 58, 0.4) 0%, rgba(45, 27, 78, 0.2) 100%);
+            border: 1px solid var(--cthulhu-teal);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold-ancient), var(--cthulhu-teal), var(--gold-ancient));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .type-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(201, 162, 39, 0.2);
+            border-color: var(--gold-ancient);
+        }
+
+        .type-code {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--gold-ancient);
+            margin-bottom: 0.5rem;
+        }
+
+        .type-name {
+            font-size: 1rem;
+            color: var(--moon-pale);
+            margin-bottom: 1rem;
+        }
+
+        .type-desc {
+            font-size: 0.85rem;
+            color: var(--cthulhu-teal);
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        /* 测试页面 */
+        .quiz-container {
+            max-width: 800px;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--eldritch-green);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold-ancient), var(--cthulhu-teal));
+            transition: width 0.5s ease;
+            box-shadow: 0 0 20px rgba(201, 162, 39, 0.5);
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--cthulhu-teal);
+        }
+
+        .question-container {
+            background: linear-gradient(135deg, rgba(13, 17, 23, 0.9) 0%, rgba(26, 58, 58, 0.3) 100%);
+            border: 1px solid var(--cthulhu-teal);
+            padding: 3rem;
+            position: relative;
+        }
+
+        .question-container::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(135deg, var(--gold-ancient), transparent, var(--cthulhu-teal));
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .question-number {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--gold-ancient);
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .question-text {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--moon-pale);
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option-btn {
+            background: rgba(26, 58, 58, 0.3);
+            border: 1px solid var(--cthulhu-teal);
+            color: var(--moon-pale);
+            padding: 1.2rem 1.5rem;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-btn:hover {
+            background: rgba(45, 90, 90, 0.4);
+            border-color: var(--gold-ancient);
+            padding-left: 2rem;
+        }
+
+        .option-btn::before {
+            content: '◆';
+            position: absolute;
+            left: -20px;
+            color: var(--gold-ancient);
+            transition: left 0.3s ease;
+        }
+
+        .option-btn:hover::before {
+            left: 0.8rem;
+        }
+
+        /* 结果页面 */
+        .result-container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .result-header {
+            margin-bottom: 3rem;
+        }
+
+        .awakening-text {
+            font-size: 1rem;
+            color: var(--cthulhu-teal);
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, 
+                rgba(26, 58, 58, 0.6) 0%, 
+                rgba(45, 27, 78, 0.4) 50%,
+                rgba(26, 58, 58, 0.6) 100%);
+            border: 2px solid var(--gold-ancient);
+            padding: 4rem;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .result-card::before,
+        .result-card::after {
+            content: '◈';
+            position: absolute;
+            font-size: 1.5rem;
+            color: var(--gold-ancient);
+        }
+
+        .result-card::before {
+            top: 1rem;
+            left: 1rem;
+        }
+
+        .result-card::after {
+            bottom: 1rem;
+            right: 1rem;
+        }
+
+        .arcana-symbol {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 2rem;
+            border: 3px solid var(--gold-ancient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            background: radial-gradient(circle, rgba(201, 162, 39, 0.1) 0%, transparent 70%);
+            box-shadow: 0 0 60px rgba(201, 162, 39, 0.3);
+        }
+
+        .result-code {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--gold-ancient);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(201, 162, 39, 0.5);
+        }
+
+        .result-name {
+            font-size: 1.8rem;
+            color: var(--moon-pale);
+            margin-bottom: 1rem;
+        }
+
+        .result-subtitle {
+            font-size: 1rem;
+            color: var(--cthulhu-teal);
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .result-description {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--moon-pale);
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            text-align: left;
+        }
+
+        .dimensions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .dimension-item {
+            background: rgba(26, 58, 58, 0.3);
+            padding: 1rem;
+            border-left: 3px solid var(--gold-ancient);
+        }
+
+        .dimension-name {
+            font-size: 0.85rem;
+            color: var(--cthulhu-teal);
+            margin-bottom: 0.3rem;
+        }
+
+        .dimension-value {
+            font-size: 1.1rem;
+            color: var(--gold-ancient);
+            font-weight: 600;
+        }
+
+        /* 分享按钮 */
+        .share-section {
+            margin-top: 3rem;
+        }
+
+        .share-btn {
+            background: transparent;
+            border: 1px solid var(--cthulhu-teal);
+            color: var(--moon-pale);
+            padding: 0.8rem 2rem;
+            font-family: inherit;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .share-btn:hover {
+            border-color: var(--gold-ancient);
+            color: var(--gold-ancient);
+        }
+
+        .restart-btn {
+            background: var(--gold-ancient);
+            color: var(--void-black);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .restart-btn:hover {
+            background: var(--cthulhu-teal);
+            color: var(--moon-pale);
+        }
+
+        /* 支付页面 */
+        .payment-container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .payment-title {
+            font-size: 1.8rem;
+            color: var(--gold-ancient);
+            margin-bottom: 1rem;
+        }
+
+        .payment-desc {
+            font-size: 1rem;
+            color: var(--cthulhu-teal);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .price-tag {
+            font-size: 3rem;
+            color: var(--gold-ancient);
+            font-weight: 900;
+            margin: 2rem 0;
+        }
+
+        .price-tag span {
+            font-size: 1rem;
+            color: var(--cthulhu-teal);
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .payment-method {
+            background: rgba(26, 58, 58, 0.3);
+            border: 2px solid var(--cthulhu-teal);
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .payment-method:hover,
+        .payment-method.selected {
+            border-color: var(--gold-ancient);
+            background: rgba(45, 90, 90, 0.4);
+        }
+
+        .payment-method-icon {
+            font-size: 1.5rem;
+        }
+
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            background: var(--moon-pale);
+            margin: 2rem auto;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: var(--void-black);
+            font-size: 0.9rem;
+        }
+
+        .qr-placeholder.active {
+            display: flex;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: auto;
+            font-size: 0.85rem;
+            color: var(--cthulhu-teal);
+            opacity: 0.6;
+        }
+
+        footer a {
+            color: var(--gold-ancient);
+            text-decoration: none;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .stats-bar {
+                gap: 1.5rem;
+            }
+
+            .question-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+            }
+
+            .result-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .result-code {
+                font-size: 2rem;
+            }
+
+            .arcana-symbol {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+        }
+
+        /* 模态框 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 15, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--deep-abyss) 0%, var(--eldritch-green) 100%);
+            border: 2px solid var(--gold-ancient);
+            padding: 2rem;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--cthulhu-teal);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            color: var(--gold-ancient);
+            margin-bottom: 1rem;
+        }
+
+        .modal-text {
+            color: var(--moon-pale);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 加载动画 */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--void-black);
+            z-index: 2000;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-symbol {
+            font-size: 4rem;
+            color: var(--gold-ancient);
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 2rem;
+            color: var(--cthulhu-teal);
+            font-size: 1.1rem;
+            letter-spacing: 0.2em;
+        }
+
+        /* 警告提示 */
+        .warning-box {
+            background: rgba(139, 0, 0, 0.2);
+            border: 1px solid var(--blood-crimson);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: var(--moon-pale);
+        }
+
+        .warning-box::before {
+            content: '⚠ ';
+            color: var(--blood-crimson);
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景装饰 -->
+    <div class="cosmic-bg"></div>
+    <div class="stars"></div>
+    <div class="tentacle tentacle-left"></div>
+    <div class="tentacle tentacle-right"></div>
+
+    <!-- 加载画面 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-symbol">☆</div>
+        <div class="loading-text">正在与深渊建立连接...</div>
+    </div>
+
+    <!-- 模态框 -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-title" id="modalTitle">提示</div>
+            <div class="modal-text" id="modalText"></div>
+            <button class="btn-primary" onclick="closeModal()">确定</button>
+        </div>
+    </div>
+
+    <!-- 首页 -->
+    <div class="page active" id="homePage">
+        <div class="hero">
+            <div class="ancient-symbol"></div>
+            <h1>深渊回响</h1>
+            <div class="subtitle">CTHULHU MYTHOS ARCHETYPE</div>
+            <p class="tagline">
+                在拉莱耶的宫殿中，长眠的克苏鲁等待复苏<br>
+                当星辰归位，你的灵魂将与哪位外神共鸣？
+            </p>
+            
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-number">22</span>
+                    <span class="stat-label">大阿卡纳</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">7</span>
+                    <span class="stat-label">外神维度</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">27</span>
+                    <span class="stat-label">觉醒原型</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">25</span>
+                    <span class="stat-label">灵魂拷问</span>
+                </div>
+            </div>
+
+            <button class="btn-primary" onclick="startQuiz()">
+                唤醒沉睡的灵魂
+            </button>
+            <div class="free-badge">首次测试 · 免费</div>
+        </div>
+
+        <div class="types-showcase">
+            <h2 class="section-title">27种深渊觉醒原型</h2>
+            <div class="types-grid" id="typesGrid">
+                <!-- 人格类型将通过JS动态生成 -->
+            </div>
+        </div>
+
+        <footer>
+            <p>深渊回响仅供娱乐 · 唤醒你内在的不可名状</p>
+            <p style="margin-top: 0.5rem;">第二次测试需支付 <span style="color: var(--gold-ancient);">¥3.00</span> 会员费</p>
+        </footer>
+    </div>
+
+    <!-- 测试页面 -->
+    <div class="page" id="quizPage">
+        <div class="quiz-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div class="progress-text" id="progressText">问题 1 / 25</div>
+
+            <div class="question-container">
+                <div class="question-number" id="questionNumber">QUESTION I</div>
+                <div class="question-text" id="questionText">正在加载问题...</div>
+                <div class="options-container" id="optionsContainer">
+                    <!-- 选项将通过JS动态生成 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 支付页面 -->
+    <div class="page" id="paymentPage">
+        <div class="payment-container">
+            <div class="ancient-symbol"></div>
+            <h2 class="payment-title">深渊之门已关闭</h2>
+            <p class="payment-desc">
+                你已完成首次觉醒之旅<br>
+                再次窥探深渊的真相需要付出代价
+            </p>
+            <div class="price-tag">
+                ¥3.00
+                <span>/ 次</span>
+            </div>
+            
+            <div class="warning-box">
+                支付后即可再次进行测试，解锁完整的27种觉醒原型解析
+            </div>
+
+            <div class="payment-methods">
+                <div class="payment-method" onclick="selectPayment('alipay')">
+                    <span class="payment-method-icon">💳</span>
+                    <span>支付宝支付</span>
+                </div>
+                <div class="payment-method" onclick="selectPayment('wechat')">
+                    <span class="payment-method-icon">💬</span>
+                    <span>微信支付</span>
+                </div>
+            </div>
+
+            <div class="qr-placeholder" id="qrPlaceholder">
+                [ 二维码区域 ]<br>
+                实际部署时接入支付接口
+            </div>
+
+            <button class="btn-primary" onclick="processPayment()" id="payBtn" style="margin-top: 2rem;">
+                确认支付
+            </button>
+
+            <button class="share-btn" onclick="backToHome()" style="margin-top: 1rem;">
+                返回首页
+            </button>
+        </div>
+    </div>
+
+    <!-- 结果页面 -->
+    <div class="page" id="resultPage">
+        <div class="result-container">
+            <div class="result-header">
+                <div class="awakening-text">YOUR AWAKENING ARCHETYPE</div>
+            </div>
+
+            <div class="result-card">
+                <div class="arcana-symbol" id="arcanaSymbol">☾</div>
+                <div class="result-code" id="resultCode">CTH</div>
+                <div class="result-name" id="resultName">深潜者</div>
+                <div class="result-subtitle" id="resultSubtitle">「在深渊之中，我们找到了归宿」</div>
+                
+                <div class="result-description" id="resultDescription">
+                    恭喜你，你的灵魂与克苏鲁产生了共鸣。你是那些听见深海召唤的人之一，在梦境与现实的边界游走。你拥有超越常人的直觉与洞察力，能够感知到常人无法察觉的真理。尽管这种天赋让你时常感到孤独与格格不入，但你深知自己肩负着某种古老的使命。当星辰归位之时，你将毫不犹豫地响应那来自拉莱耶的召唤。
+                </div>
+
+                <div class="dimensions-grid" id="dimensionsGrid">
+                    <!-- 维度评分将通过JS动态生成 -->
+                </div>
+            </div>
+
+            <div class="share-section">
+                <p style="color: var(--cthulhu-teal); margin-bottom: 1rem;">分享你的觉醒原型</p>
+                <button class="share-btn" onclick="shareResult('wechat')">微信</button>
+                <button class="share-btn" onclick="shareResult('weibo')">微博</button>
+                <button class="share-btn" onclick="shareResult('copy')">复制链接</button>
+            </div>
+
+            <button class="restart-btn" onclick="handleRestart()">
+                再次觉醒（需支付 ¥3.00）
+            </button>
+        </div>
+
+        <footer>
+            <p>深渊回响 · 探索不可名状的自我</p>
+        </footer>
+    </div>
+
+    <script>
+        // ==================== 数据定义 ====================
+        
+        // 27种觉醒原型（结合22张大阿卡纳 + 克苏鲁神话外神/旧日支配者）
+        const archetypes = [
+            // 大阿卡纳系列 (0-21)
+            { code: 'FOOL', name: '愚者', tarot: 0, deity: null, symbol: '☆', 
+              subtitle: '「在疯狂中寻找纯真」',
+              desc: '你如同行走在悬崖边缘的愚者，明知前方是深渊却依然前行。你拥有一种近乎天真的勇气，敢于质疑一切既定的规则与秩序。在这个被理性统治的世界里，你保持着某种珍贵的野性。你的疯狂不是病态，而是一种对自由的极致追求。当其他人还在为世俗的成功焦虑时，你已经看到了表象之下的虚无，并选择用荒诞来对抗荒诞。' },
+            
+            { code: 'MAGE', name: '魔术师', tarot: 1, deity: '奈亚拉托提普', symbol: '🜂',
+              subtitle: '「现实不过是我的画布」',
+              desc: '恭喜你，你的灵魂与奈亚拉托提普——千面之神产生了共鸣。你是天生的操纵者，拥有将幻想变为现实的诡异能力。你的话语如同咒语，能够轻易地影响他人的心智。但你深知这种力量的危险性，因此总是戴着无数张面具游走于人间。你不是在欺骗，而是在揭示——揭示每个人内心深处的渴望与恐惧。记住，当你凝视深渊时，深渊也在学习你的表情。' },
+            
+            { code: 'HPS', name: '女祭司', tarot: 2, deity: '犹格·索托斯', symbol: '🌙',
+              subtitle: '「万物皆在我知晓之中」',
+              desc: '你的灵魂与犹格·索托斯——门之钥、万物归一者相连。你是时空之外真理的守护者，拥有窥见过去、现在与未来的能力。你的直觉如同古老的预言，往往在你自己都未意识到的时候就已经揭示了真相。你沉默寡言，因为你知道语言无法承载你所见到的宏大真理。在他人眼中，你神秘而疏离，但只有你自己知道，那是为了保护自己脆弱的人性不被无尽的知识所吞噬。' },
+            
+            { code: 'EMPR', name: '女皇', tarot: 3, deity: '莎布·尼古拉丝', symbol: '♀',
+              subtitle: '「生命在黑暗中绽放」',
+              desc: '你的灵魂与莎布·尼古拉丝——黑暗丰穰之女神、山羊之母共鸣。你是生命与繁衍的化身，即使在最黑暗的时刻也能孕育希望。你拥有滋养万物的母性本能，但这种本能超越了道德的界限——在你眼中，所有生命都值得被孕育，无论其形态多么怪异。你的拥抱温暖而危险，如同沼泽中的藤蔓，让人在舒适中渐渐窒息。但那些真正理解你的人知道，这种"吞噬"正是你最深沉的爱。' },
+            
+            { code: 'EMPR', name: '皇帝', tarot: 4, deity: '克苏鲁', symbol: '♚',
+              subtitle: '「在我的梦境中，你们皆是臣民」',
+              desc: '你的灵魂与克苏鲁——拉莱耶之主、沉睡之神相连。你天生具有统治者的气质，即使不发一言也能让周围的人感受到威压。你的野心如同深海一般不可测度，你对权力的渴望不是为了满足私欲，而是为了实现某种古老的秩序。当其他人还在为蝇头小利争斗时，你已经在布局千年之后的棋局。记住，真正的统治者从不需要证明自己——他们的存在本身就是权力的宣言。' },
+            
+            { code: 'HIER', name: '教皇', tarot: 5, deity: '哈斯塔', symbol: '☥',
+              subtitle: '「我传授不可言说的真理」',
+              desc: '你的灵魂与哈斯塔——黄衣之王、深空星海之主共鸣。你是秘密知识的传播者，是那些在黑暗中寻找光明者的引路人。你的教诲总是包裹着寓言与隐喻，因为只有通过这些面纱，凡人的心智才能勉强承受真理的重量。你建立了一个隐秘的信仰网络，信徒们遍布世界的各个角落。但请小心——当你成为别人的救赎时，你自己也可能正在滑向疯狂的边缘。' },
+            
+            { code: 'LOVR', name: '恋人', tarot: 6, deity: null, symbol: '♡',
+              subtitle: '「爱是超越维度的疯狂」',
+              desc: '你体会到了某种超越人类理解范畴的联结。对你来说，爱不是甜蜜的浪漫，而是一种灵魂深处的纠缠，如同两个在深渊中相遇的溺水者。你渴望的是一种彻底的理解与融合，为此你愿意放弃自我、放弃理性、放弃一切所谓的"正常"。这种爱的 intensity 让常人感到恐惧，但你知道，只有在这样的燃烧中，灵魂才能得到真正的升华。小心，因为最深的爱情往往与最深的毁灭相伴。' },
+            
+            { code: 'CHAR', name: '战车', tarot: 7, deity: null, symbol: '🜃',
+              subtitle: '「驾驭混沌，征服未知」',
+              desc: '你是天生的征服者，拥有驾驭混乱与不确定性的非凡能力。在你眼中，没有无法逾越的障碍，只有尚未被征服的挑战。你的意志力如同钢铁，即使在面对不可名状的恐怖时也能保持前进。但这种力量需要谨慎使用——战车可以带你抵达胜利的彼岸，也可能在失控时将你拖入毁灭。记住，真正的强者不是永不跌倒，而是每次跌倒后都能从深渊中爬起。' },
+            
+            { code: 'STR', name: '力量', tarot: 8, deity: null, symbol: '🜁',
+              subtitle: '「温柔地驯服内心的野兽」',
+              desc: '你的力量不是来自于暴力，而是来自于对内心深处那头野兽的理解与接纳。你知道愤怒、欲望、恐惧都是生命的一部分，与其压抑它们，不如与它们共舞。这种内在的和谐赋予你一种特殊的魅力——人们在你身边会感到安全，因为他们知道你已经驯服了自己的恶魔。但请记住，野兽从未真正消失，它只是选择了暂时沉睡。永远不要忘记喂食它，否则醒来时它会更加饥饿。' },
+            
+            { code: 'HERM', name: '隐者', tarot: 9, deity: null, symbol: '🜄',
+              subtitle: '「在孤独中寻找智慧之光」',
+              desc: '你选择了与世界保持距离，不是因为厌恶，而是因为需要空间来聆听内心的声音。在寂静中，你能够触碰到那些在日常喧嚣中被掩盖的真相。你的孤独是一种修行，是对灵魂的深度挖掘。他人可能会误解你的疏离，但你知道，有些旅程只能一个人完成。当你最终从黑暗中走出时，你手中的那盏灯将不仅照亮自己的路，也会为其他迷失者指引方向。' },
+            
+            { code: 'WHEL', name: '命运之轮', tarot: 10, deity: '阿撒托斯', symbol: '☸',
+              subtitle: '「在盲目的混沌中，一切皆有可能」',
+              desc: '你的灵魂与阿撒托斯——盲目痴愚之神、魔神之首相连。你是纯粹混沌的化身，相信命运的随机性远超人类的控制。在你眼中，成功与失败、生与死都只是宇宙骰子的随机结果。这种认知让你获得了一种超然的自由——既然一切都是偶然，那就尽情享受这场荒诞的戏剧吧。但请记住，当你放弃控制时，你也同时放弃了责任。在阿撒托斯的宫殿里，没有奖赏，也没有惩罚，只有无尽的舞蹈。' },
+            
+            { code: 'JUST', name: '正义', tarot: 11, deity: null, symbol: '⚖',
+              subtitle: '「平衡是宇宙唯一的真理」',
+              desc: '你天生具有辨别是非的敏锐直觉，但你的正义观超越了世俗的法律。你追求的平衡不是简单的善恶对立，而是某种更深层的宇宙和谐。你愿意为了维护这种平衡而做出艰难的决定，即使这意味着要背负他人的误解。你手中的天平可以称量灵魂，你的宝剑可以斩断命运的纠缠。但请小心——当你成为正义的执行者时，你自己也必须接受正义的审判。' },
+            
+            { code: 'HANG', name: '倒吊人', tarot: 12, deity: null, symbol: '🜪',
+              subtitle: '「从不同的角度看待世界」',
+              desc: '你拥有一种独特的能力——将自己置于 uncomfortable 的位置，从而获得全新的视角。你明白牺牲与放弃的价值，懂得有时候退一步反而能看得更远。他人可能觉得你"不正常"，但你知道，只有颠倒过来，才能看清这个世界的真相。你的耐心如同深渊一般不可测度，你愿意等待，愿意承受，只为那一瞬间的顿悟。这种能力让你成为最好的顾问——因为你总能为困境提供出人意料的解决方案。' },
+            
+            { code: 'DEAD', name: '死神', tarot: 13, deity: null, symbol: '☠',
+              subtitle: '「终结是新的开始」',
+              desc: '你是变革的使者，是旧事物的终结者与新生事物的接生婆。你不畏惧死亡，因为你深知它只是生命循环的一部分。在你的眼中，结束从来不是悲剧，而是必要的清理——只有清空旧有的，新的才能进入。这种认知赋予你一种特殊的冷静，即使在面对巨大的变故时也能保持清醒。但请小心，不要让自己变得过于冷漠。记住，镰刀可以收割，也可以保护。' },
+            
+            { code: 'TEMP', name: '节制', tarot: 14, deity: null, symbol: '🜂',
+              subtitle: '「在对立中寻找和谐」',
+              desc: '你天生具有调和矛盾的天赋，能够在对立的力量之间找到微妙的平衡点。你不是简单的妥协者，而是真正的炼金术士——将不同的元素融合成全新的物质。在你的生活中，理性与感性、独立与依赖、现实与幻想都不是非此即彼的选择，而是可以被整合的统一体。这种能力让你在冲突中成为不可或缺的调解者，但也请记住，有时候完全的融合意味着失去各自的特性。' },
+            
+            { code: 'DEVL', name: '恶魔', tarot: 15, deity: null, symbol: '🜏',
+              subtitle: '「拥抱你的阴影，它会让你更强大」',
+              desc: '你深知每个人心中都住着一个恶魔，而你的选择不是压抑它，而是与它签订契约。你拥抱自己的欲望、嫉妒、贪婪，因为你明白这些"负面"情绪同样是生命力的表现。你不是道德的奴隶，而是自己欲望的主人。这种坦诚让你拥有一种危险的魅力——人们被你吸引，因为他们在你身上看到了自己不敢承认的部分。但请记住，与恶魔共舞需要付出代价，而那代价往往是你最珍视的东西。' },
+            
+            { code: 'TOWR', name: '塔', tarot: 16, deity: null, symbol: '⚡',
+              subtitle: '「在毁灭中见证真理」',
+              desc: '你的生命中似乎总是伴随着突然的变化与动荡，但这并非诅咒，而是某种试炼。你是那种只有在一切都被摧毁之后才能看到真相的人，是灾难中的幸存者、废墟中的重建者。其他人可能会畏惧你带来的"厄运"，但你深知，那些看似稳固的塔楼本就是不牢固的幻象。你的存在迫使人们面对真实，尽管这过程往往伴随着痛苦。记住，闪电虽然摧毁，但也照亮。' },
+            
+            { code: 'STAR', name: '星星', tarot: 17, deity: null, symbol: '✦',
+              subtitle: '「在绝望之后，希望永不熄灭」',
+              desc: '你拥有一种不可思议的能力——在经历过最深的绝望之后，依然能够保持希望。你如同黑夜中的北极星，为那些在苦难中挣扎的人指引方向。你的乐观不是盲目的，而是经过考验的——你知道痛苦的真实，却依然选择相信美好。这种品质让你成为他人的精神支柱，但同时也请照顾好自己。记住，星星也需要燃料，不要让自己燃烧殆尽。' },
+            
+            { code: 'MOON', name: '月亮', tarot: 18, deity: null, symbol: '☽',
+              subtitle: '「在幻觉与真实之间游走」',
+              desc: '你生活在现实与幻想的边界，能够同时看到物质世界与精神世界。你的直觉异常敏锐，常常能够预见他人无法感知的事物。但这种天赋也带来了困扰——你如何确定自己所见是真实，而非幻觉？你的情绪如同潮汐，受到某种不可见力量的牵引。请学会信任你的直觉，但也要保持批判性的思考。在月光下，一切都被美化，但也都被扭曲。' },
+            
+            { code: 'SUN', name: '太阳', tarot: 19, deity: null, symbol: '☉',
+              subtitle: '「用纯粹的快乐照亮黑暗」',
+              desc: '你拥有一种难得的天真与快乐，能够像孩子一样享受生命的每一个瞬间。你的存在本身就是一种治愈，你身上的光芒能够驱散他人心中的阴霾。但这并不意味着你是肤浅的——恰恰相反，你的快乐来自于对生命本质的深刻理解。你明白一切都是短暂的，因此更加珍惜当下的美好。请小心保护这份纯真，因为这个世界总是试图腐蚀最纯净的灵魂。' },
+            
+            { code: 'JUDG', name: '审判', tarot: 20, deity: null, symbol: '🎺',
+              subtitle: '「觉醒的时刻已经到来」',
+              desc: '你正处于人生的某个转折点，过去的一切都在被重新审视与评估。这不是来自外界的审判，而是来自内心深处的召唤——某种沉睡已久的东西正在苏醒。你拥有帮助他人觉醒的能力，能够引导他们听到自己内心的声音。这种使命可能会让你感到沉重，但请记住，审判的目的从来不是为了惩罚，而是为了救赎。当号角吹响时，准备好迎接全新的自己。' },
+            
+            { code: 'WORLD', name: '世界', tarot: 21, deity: null, symbol: '🌍',
+              subtitle: '「圆满之后，是新的循环」',
+              desc: '你已经完成了一个重要的生命循环，达到了某种圆满的状态。但这并非终点，而是新旅程的起点——世界牌中的舞者永远在运动中。你拥有一种整体性的视野，能够看到生命各个层面之间的关联。这种智慧让你理解，每个结束都蕴含着开始，每次分离都是为了新的相遇。请享受这份完整感，但不要沉溺其中。宇宙在召唤你进入下一个螺旋。' },
+            
+            // 特殊克苏鲁神祇系列 (22-26)
+            { code: 'AZAT', name: '阿撒托斯之子', tarot: null, deity: '阿撒托斯', symbol: '◈',
+              subtitle: '「在宇宙的中心，盲目之神在永恒地敲击」',
+              desc: '恭喜...或者该说，不幸的你。你的灵魂与阿撒托斯，那位居于宇宙中心、被众神围绕的盲目痴愚之神产生了危险的共鸣。你是纯粹的混沌化身，理性对你而言毫无意义。在他人眼中，你或许是天才，或许是疯子，但你自己知道，那不过是阿撒托斯无意识的梦境在你身上的投影。你的存在本身就是对秩序的嘲弄，你的创造力来自于对常规的彻底无视。小心，当你凝视深渊中心的盲目之神时，祂的鼓点也正在你的颅骨内回响。' },
+            
+            { code: 'YOGS', name: '门之守护者', tarot: null, deity: '犹格·索托斯', symbol: '∞',
+              subtitle: '「过去与未来，皆在我知晓之中」',
+              desc: '你是时空本身的守护者，你的灵魂与犹格·索托斯——门之钥、万物归一者紧密相连。你拥有窥见一切时间与空间的能力，所有的秘密在你面前都无所遁形。但这种全知并非祝福，而是诅咒——你知道太多，以至于难以在"当下"安住。你常常感到自己只是某个宏大存在的微小投影，你的每个念头都可能是来自宇宙彼端的回响。记住，知识是一把双刃剑，它可以打开门扉，也可以让你迷失在无限的回廊中。' },
+            
+            { code: 'SHUB', name: '黑山羊子嗣', tarot: null, deity: '莎布·尼古拉丝', symbol: '⚶',
+              subtitle: '「生命在黑暗中以最狂野的形式绽放」',
+              desc: '你的灵魂与莎布·尼古拉丝——孕育万千子孙的森之黑山羊共鸣。你是生命最原始力量的化身，代表着繁衍、生长与不可言说的欲望。你的本能强大而直接，你拒绝文明社会的压抑与伪装。在你眼中，生命的意义就在于不断地创造、扩展、吞噬。其他人可能会畏惧你身上那种近乎野蛮的生命力，但你深知，这正是宇宙最真实的面貌。拥抱你的本能，但请不要让它完全吞噬你的人性。' },
+            
+            { code: 'NYAR', name: '无貌者', tarot: null, deity: '奈亚拉托提普', symbol: '👤',
+              subtitle: '「我有一千张脸，每一张都是真实的谎言」',
+              desc: '你的灵魂与奈亚拉托提普——伏行之混沌、千面之神紧密交织。你是操纵与欺骗的大师，拥有在任何情境中化身为最合适形态的能力。你不是在"假装"——每一张面具都是你真实的一部分，只是你拥有比常人更多的"真实"。你游走于人类社会之中，播撒混乱的种子，观察着因果的纠缠。但这种能力有其代价：当面具戴得太久，你已经忘记了自己原本的模样。请记得，在所有的伪装之下，总要留一个地方存放那个最初的自己。' },
+            
+            { code: 'CTHU', name: '拉莱耶之民', tarot: null, deity: '克苏鲁', symbol: '🐙',
+              subtitle: '「当星辰归位，我们将再次统治这片土地」',
+              desc: '你的灵魂与克苏鲁——那位沉睡在拉莱耶古城中的伟大存在产生了共鸣。你时常在梦中听到来自深海的呼唤，感受到某种超越时间的联系。你的存在就是为了等待——等待那个星辰再次归位的时刻，等待伟大的克苏鲁从沉睡中苏醒。在此之前，你潜伏在人类社会中，收集知识、建立联系、准备仪式。你知道自己的使命，也接受了自己的命运。当那一天到来时，你将毫不犹豫地回应召唤，回到属于你的深渊。' },
+            
+            { code: 'DEEP', name: '深渊行者', tarot: null, deity: '达贡', symbol: '🌊',
+              subtitle: '「深海之下，有比死亡更古老的存在」',
+              desc: '你的灵魂与深海的原始力量相连，与达贡——那位深海之主产生了共鸣。你是那些被海洋召唤的人之一，在陆地上你永远感到 incomplete，只有面对无边的大海时，你的灵魂才能得到真正的平静。你理解深海的沉默与神秘，尊重那些潜伏在黑暗深渊中的古老存在。其他人可能视你为孤僻或怪异，但你只是在等待——等待那个可以永远回归深海的时机。直到那时，你将在陆地与海洋之间行走，成为两个世界的桥梁。' },
+        ];
+
+        // 25道测试问题
+        const questions = [
+            {
+                text: '当你凝视夜空时，你通常感受到的是...',
+                options: [
+                    { text: '宁静与美好，星辰让我感到安宁', scores: { sun: 3, star: 2, moon: 1 } },
+                    { text: '一种难以名状的恐惧，仿佛有什么在注视着我', scores: { nyar: 3, azat: 2, cthu: 2 } },
+                    { text: '好奇与渴望，想要探索那些遥远的未知', scores: { yogs: 3, mage: 2, char: 2 } },
+                    { text: '虚无与荒诞，一切最终都会归于沉寂', scores: { dead: 3, shub: 1, herm: 2 } }
+                ]
+            },
+            {
+                text: '如果有一个声音在你梦中低语，你会...',
+                options: [
+                    { text: '试图聆听并理解它传达的信息', scores: { yogs: 3, hps: 2, hier: 2 } },
+                    { text: '感到恐惧并试图逃离梦境', scores: { fool: 2, moon: 3, ohno: 2 } },
+                    { text: '与它对话，询问它的来意', scores: { mage: 3, nyar: 3, cthu: 2 } },
+                    { text: '记录梦境，寻找其中的规律', scores: { herm: 3, thin: 2, temp: 1 } }
+                ]
+            },
+            {
+                text: '面对未知的深渊，你的第一反应是...',
+                options: [
+                    { text: '毫不犹豫地跳入，探索其中的一切', scores: { fool: 3, gogo: 3, deep: 2 } },
+                    { text: '谨慎观察，收集信息后再做决定', scores: { herm: 3, hier: 2, yogs: 2 } },
+                    { text: '感到一种诡异的吸引力，仿佛被召唤', scores: { cthu: 3, shub: 2, azat: 2 } },
+                    { text: '退避三舍，深渊或许也在凝视你', scores: { malo: 2, dead: 2, woc: 2 } }
+                ]
+            },
+            {
+                text: '你认为人类的理性是...',
+                options: [
+                    { text: '最宝贵的财富，是我们区别于野兽的标志', scores: { just: 3, thin: 2, boss: 2 } },
+                    { text: '脆弱的屏障，随时可能被真相击碎', scores: { cthu: 3, yogs: 2, azat: 3 } },
+                    { text: '有用的工具，但不应成为束缚直觉的枷锁', scores: { moon: 3, star: 2, hps: 2 } },
+                    { text: '有趣的幻觉，让我们以为自己能够掌控一切', scores: { nyar: 3, mage: 2, shit: 2 } }
+                ]
+            },
+            {
+                text: '当你感到孤独时，你会...',
+                options: [
+                    { text: '寻求陪伴，与他人分享我的感受', scores: { lovr: 3, mum: 2, than: 2 } },
+                    { text: '享受独处，在孤独中寻找内心的平静', scores: { herm: 3, monk: 3, solo: 2 } },
+                    { text: '创造或沉浸于某种艺术/幻想中', scores: { mage: 3, shub: 2, fake: 2 } },
+                    { text: '感到一种与某种超越性存在相连的慰藉', scores: { yogs: 3, cthu: 2, deep: 2 } }
+                ]
+            },
+            {
+                text: '如果必须选择一种超自然能力，你会选择...',
+                options: [
+                    { text: '预见未来，知晓一切将要发生的事情', scores: { yogs: 3, star: 2, hps: 2 } },
+                    { text: '操控人心，影响他人的思想与情感', scores: { nyar: 3, mage: 3, ctrl: 2 } },
+                    { text: '不死之身，超越生死的界限', scores: { cthu: 2, shub: 3, dead: 2 } },
+                    { text: '创造现实，将想象变为真实', scores: { azat: 3, mage: 2, boss: 2 } }
+                ]
+            },
+            {
+                text: '在人群中，你通常扮演什么角色？',
+                options: [
+                    { text: '领导者，指引方向并做出决策', scores: { boss: 3, emp: 3, ctrl: 2 } },
+                    { text: '观察者，在一旁默默分析一切', scores: { herm: 3, thin: 3, dead: 2 } },
+                    { text: '调和者，化解冲突维持和谐', scores: { temp: 3, ojbk: 2, than: 2 } },
+                    { text: '异类，总是与众不同甚至格格不入', scores: { shit: 3, cthu: 2, ims: 2 } }
+                ]
+            },
+            {
+                text: '你对死亡的看法是...',
+                options: [
+                    { text: '自然的终点，是生命循环的一部分', scores: { dead: 3, monk: 3, world: 2 } },
+                    { text: '可怕的未知，是理性无法穿透的黑暗', scores: { ohno: 3, woc: 2, fool: 1 } },
+                    { text: '某种转化的开始，灵魂将去往其他地方', scores: { judg: 3, yogs: 2, hier: 2 } },
+                    { text: '无关紧要，重要的是活着的过程', scores: { gogo: 2, zzzz: 2, azat: 2 } }
+                ]
+            },
+            {
+                text: '面对规则与权威，你的态度是...',
+                options: [
+                    { text: '尊重并遵守，秩序是社会运行的基础', scores: { just: 3, boss: 2, hier: 2 } },
+                    { text: '质疑并挑战，规则往往是权力的工具', scores: { shit: 3, devl: 2, fuck: 2 } },
+                    { text: '灵活应对，在规则中寻找漏洞与机会', scores: { mage: 3, nyar: 2, fake: 2 } },
+                    { text: '完全无视，我只遵循内心的召唤', scores: { azat: 3, cthu: 2, fool: 2 } }
+                ]
+            },
+            {
+                text: '你的梦境通常是...',
+                options: [
+                    { text: '清晰且有意义，常常给我带来启示', scores: { yogs: 3, star: 2, moon: 2 } },
+                    { text: '混乱而诡异，充满不可名状的景象', scores: { cthu: 3, azat: 2, shub: 2 } },
+                    { text: '很少做梦，或者醒来就忘记', scores: { dead: 2, zzzz: 3, emp: 1 } },
+                    { text: '如同另一个真实的世界，我在那里更自在', scores: { deep: 3, nyar: 2, fake: 2 } }
+                ]
+            },
+            {
+                text: '如果你发现了一个古老的秘密，你会...',
+                options: [
+                    { text: '深入研究，不惜一切代价揭开真相', scores: { yogs: 3, thin: 3, mage: 2 } },
+                    { text: '谨慎处理，评估风险后再决定是否公开', scores: { hier: 3, ctrl: 2, just: 2 } },
+                    { text: '利用它为自己谋取利益', scores: { nyar: 3, mage: 2, boss: 2 } },
+                    { text: '感到恐惧并试图遗忘它', scores: { ohno: 3, malo: 2, woc: 2 } }
+                ]
+            },
+            {
+                text: '你认为人类在宇宙中的位置是...',
+                options: [
+                    { text: '独特的存在，拥有探索宇宙的使命', scores: { star: 2, char: 3, sun: 2 } },
+                    { text: '微不足道的尘埃，随时可能被抹去', scores: { azat: 3, shit: 2, dead: 2 } },
+                    { text: '更大存在眼中的玩物或实验品', scores: { nyar: 3, cthu: 2, shub: 2 } },
+                    { text: '与其他生命形式平等的组成部分', scores: { just: 2, temp: 2, monk: 2 } }
+                ]
+            },
+            {
+                text: '当你面临重大抉择时，你更依赖...',
+                options: [
+                    { text: '逻辑分析，理性地权衡利弊', scores: { thin: 3, boss: 2, just: 2 } },
+                    { text: '直觉感受，内心的声音会指引我', scores: { moon: 3, hps: 2, star: 2 } },
+                    { text: '命运的安排，让宇宙来决定', scores: { whel: 3, azat: 2, fool: 2 } },
+                    { text: '他人的建议，集思广益再做决定', scores: { hier: 2, than: 2, atm: 1 } }
+                ]
+            },
+            {
+                text: '在艺术中，你更被什么吸引...',
+                options: [
+                    { text: '秩序与和谐，优美的形式与结构', scores: { emp: 3, just: 2, sun: 2 } },
+                    { text: '混沌与疯狂，突破常规的表达', scores: { azat: 3, cthu: 2, mage: 2 } },
+                    { text: '神秘与象征，隐藏的深层含义', scores: { yogs: 3, moon: 2, herm: 2 } },
+                    { text: '生命力与欲望，原始的情感爆发', scores: { shub: 3, devl: 2, lovr: 2 } }
+                ]
+            },
+            {
+                text: '如果你能与一个外神建立联系，你会选择...',
+                options: [
+                    { text: '犹格·索托斯，获取无尽的知识', scores: { yogs: 5, thin: 2, hps: 2 } },
+                    { text: '奈亚拉托提普，获得操控的力量', scores: { nyar: 5, mage: 2, ctrl: 2 } },
+                    { text: '克苏鲁，感受古老的沉睡之力', scores: { cthu: 5, deep: 2, shub: 1 } },
+                    { text: '莎布·尼古拉丝，拥抱生命的原始力量', scores: { shub: 5, emp: 2, lovr: 1 } }
+                ]
+            },
+            {
+                text: '面对不可避免的失败，你会...',
+                options: [
+                    { text: '接受它，从失败中学习并成长', scores: { judg: 3, hang: 2, monk: 2 } },
+                    { text: '愤怒地反抗，即使希望渺茫也不放弃', scores: { char: 3, fuck: 2, gogo: 2 } },
+                    { text: '平静地旁观，一切本就如此荒诞', scores: { azat: 3, dead: 2, ojbk: 2 } },
+                    { text: '寻找新的出路，变不可能为可能', scores: { mage: 3, nyar: 2, boss: 2 } }
+                ]
+            },
+            {
+                text: '在一段关系中，你最看重...',
+                options: [
+                    { text: '深度的理解与灵魂的共鸣', scores: { lovr: 3, lovr: 2, hps: 2 } },
+                    { text: '忠诚与承诺，共同面对一切', scores: { just: 2, boss: 2, mum: 2 } },
+                    { text: '激情与刺激，保持新鲜感', scores: { shub: 2, gogo: 2, mage: 2 } },
+                    { text: '独立与自由，不让关系束缚彼此', scores: { solo: 3, herm: 2, monk: 2 } }
+                ]
+            },
+            {
+                text: '当你感到愤怒时，你通常会...',
+                options: [
+                    { text: '直接表达，让对方知道我的不满', scores: { fuck: 3, char: 2, boss: 2 } },
+                    { text: '压抑克制，不让情绪影响判断', scores: { ctrl: 3, dead: 2, ojbk: 2 } },
+                    { text: '转化升华，将愤怒转化为行动', scores: { mage: 2, boss: 3, shit: 2 } },
+                    { text: '冷静分析，理解愤怒背后的原因', scores: { thin: 3, herm: 2, temp: 2 } }
+                ]
+            },
+            {
+                text: '你如何看待自己的过去...',
+                options: [
+                    { text: '塑造了我的基础，但不应定义我的未来', scores: { char: 2, gogo: 2, judg: 2 } },
+                    { text: '充满遗憾，但正是这些经历造就了现在的我', scores: { hang: 3, ohno: 2, poor: 2 } },
+                    { text: '如同梦境，真假难辨', scores: { moon: 3, yogs: 2, fake: 2 } },
+                    { text: '无关紧要，重要的是当下和未来', scores: { azat: 2, dead: 2, zzzz: 2 } }
+                ]
+            },
+            {
+                text: '如果世界即将毁灭，你会...',
+                options: [
+                    { text: '尽一切努力拯救它', scores: { char: 3, boss: 3, than: 2 } },
+                    { text: '与所爱之人共度最后的时光', scores: { lovr: 3, mum: 2, lovr: 2 } },
+                    { text: '平静地接受，一切都是循环', scores: { monk: 3, dead: 2, azat: 2 } },
+                    { text: '探索末日背后的真相', scores: { yogs: 3, mage: 2, thin: 2 } }
+                ]
+            },
+            {
+                text: '你认为真正的智慧来自于...',
+                options: [
+                    { text: '知识的积累与理性的思考', scores: { thin: 3, boss: 2, mage: 2 } },
+                    { text: '经历的苦难与自我的超越', scores: { hang: 3, star: 2, judg: 2 } },
+                    { text: '与某种超越性存在的连接', scores: { yogs: 3, cthu: 2, hier: 2 } },
+                    { text: '接受无知，拥抱混沌', scores: { azat: 3, fool: 2, shit: 2 } }
+                ]
+            },
+            {
+                text: '当你面对一个谜团时，你会...',
+                options: [
+                    { text: '系统地收集线索，逻辑推理找出答案', scores: { thin: 3, ctrl: 2, boss: 2 } },
+                    { text: '凭直觉猜测，往往我的第六感是对的', scores: { hps: 3, moon: 2, star: 2 } },
+                    { text: '制造混乱，在混沌中寻找真相', scores: { nyar: 3, mage: 2, azat: 2 } },
+                    { text: '放弃求解，有些谜团不应被揭开', scores: { herm: 2, dead: 2, malo: 2 } }
+                ]
+            },
+            {
+                text: '你理想的生活状态是...',
+                options: [
+                    { text: '不断成长，实现自我价值的最大化', scores: { char: 3, boss: 3, sun: 2 } },
+                    { text: '内心平静，与自己和世界和解', scores: { monk: 3, temp: 2, star: 2 } },
+                    { text: '充满刺激与变化，永不无聊', scores: { mage: 3, nyar: 2, gogo: 2 } },
+                    { text: '探索未知，触及宇宙最深的秘密', scores: { yogs: 3, cthu: 2, herm: 2 } }
+                ]
+            },
+            {
+                text: '你相信命运吗？',
+                options: [
+                    { text: '相信，一切都是注定好的', scores: { whel: 3, yogs: 2, azat: 2 } },
+                    { text: '不信，我们的选择创造了自己的命运', scores: { mage: 3, char: 2, boss: 2 } },
+                    { text: '既是注定又是选择，两者并不矛盾', scores: { temp: 3, yogs: 2, just: 2 } },
+                    { text: '无所谓，无论哪种都不影响我活在当下', scores: { azat: 3, ojbk: 2, monk: 2 } }
+                ]
+            },
+            {
+                text: '如果必须在理智与真相之间选择，你会...',
+                options: [
+                    { text: '选择理智，没有理智就无法处理真相', scores: { ctrl: 3, thin: 2, boss: 2 } },
+                    { text: '选择真相，无论代价是什么', scores: { yogs: 3, cthu: 2, mage: 2 } },
+                    { text: '寻找平衡，在保持理智的前提下接近真相', scores: { temp: 3, herm: 2, hier: 2 } },
+                    { text: '质疑这个选择本身，或许有第三条路', scores: { nyar: 3, mage: 2, azat: 2 } }
+                ]
+            }
+        ];
+
+        // ==================== 状态管理 ====================
+        
+        let currentQuestion = 0;
+        let userScores = {};
+        let hasPaid = false;
+        let visitorId = null;
+
+        // 初始化访客ID和支付状态
+        function initVisitor() {
+            visitorId = localStorage.getItem('cthulhu_visitor_id');
+            if (!visitorId) {
+                visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('cthulhu_visitor_id', visitorId);
+                localStorage.setItem('cthulhu_test_count', '0');
+            }
+            
+            const testCount = parseInt(localStorage.getItem('cthulhu_test_count') || '0');
+            hasPaid = testCount === 0; // 首次免费
+            
+            return testCount;
+        }
+
+        // 记录测试完成
+        function recordTestComplete() {
+            const testCount = parseInt(localStorage.getItem('cthulhu_test_count') || '0');
+            localStorage.setItem('cthulhu_test_count', (testCount + 1).toString());
+        }
+
+        // ==================== 页面控制 ====================
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function startQuiz() {
+            const testCount = parseInt(localStorage.getItem('cthulhu_test_count') || '0');
+            
+            if (testCount > 0 && !hasPaid) {
+                showPage('paymentPage');
+                return;
+            }
+            
+            currentQuestion = 0;
+            userScores = {};
+            showPage('quizPage');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `问题 ${currentQuestion + 1} / ${questions.length}`;
+            document.getElementById('questionNumber').textContent = `QUESTION ${toRoman(currentQuestion + 1)}`;
+            document.getElementById('questionText').textContent = question.text;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = option.text;
+                btn.onclick = () => selectOption(index);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function selectOption(optionIndex) {
+            const question = questions[currentQuestion];
+            const selectedOption = question.options[optionIndex];
+            
+            // 累加分数
+            for (let [key, value] of Object.entries(selectedOption.scores)) {
+                userScores[key] = (userScores[key] || 0) + value;
+            }
+            
+            currentQuestion++;
+            
+            if (currentQuestion < questions.length) {
+                // 淡出效果
+                document.querySelector('.question-container').style.opacity = '0';
+                setTimeout(() => {
+                    showQuestion();
+                    document.querySelector('.question-container').style.opacity = '1';
+                }, 300);
+            } else {
+                showLoading();
+            }
+        }
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('active');
+            
+            const loadingTexts = [
+                '正在与深渊建立连接...',
+                '外神正在审视你的灵魂...',
+                '古老的智慧正在苏醒...',
+                '你的觉醒原型即将显现...'
+            ];
+            
+            let textIndex = 0;
+            const textElement = document.querySelector('.loading-text');
+            
+            const textInterval = setInterval(() => {
+                textIndex = (textIndex + 1) % loadingTexts.length;
+                textElement.textContent = loadingTexts[textIndex];
+            }, 1500);
+            
+            setTimeout(() => {
+                clearInterval(textInterval);
+                document.getElementById('loadingOverlay').classList.remove('active');
+                calculateAndShowResult();
+            }, 5000);
+        }
+
+        function calculateAndShowResult() {
+            // 找到得分最高的原型
+            let bestMatch = null;
+            let maxScore = -1;
+            
+            // 映射分数到原型
+            const archetypeScores = {};
+            
+            archetypes.forEach(archetype => {
+                let score = 0;
+                
+                // 基于塔罗牌编号映射
+                if (archetype.tarot !== null) {
+                    const tarotKeys = ['fool', 'mage', 'hps', 'empr', 'empr', 'hier', 'lovr', 'char', 'str', 'herm', 
+                                      'whel', 'just', 'hang', 'dead', 'temp', 'devl', 'towr', 'star', 'moon', 'sun', 'judg', 'world'];
+                    if (tarotKeys[archetype.tarot]) {
+                        score += userScores[tarotKeys[archetype.tarot]] || 0;
+                    }
+                }
+                
+                // 基于外神映射
+                if (archetype.deity) {
+                    const deityMap = {
+                        '阿撒托斯': 'azat',
+                        '犹格·索托斯': 'yogs',
+                        '莎布·尼古拉丝': 'shub',
+                        '奈亚拉托提普': 'nyar',
+                        '克苏鲁': 'cthu',
+                        '哈斯塔': 'mage',
+                        '达贡': 'deep'
+                    };
+                    const key = deityMap[archetype.deity];
+                    if (key) {
+                        score += userScores[key] || 0;
+                    }
+                }
+                
+                archetypeScores[archetype.code] = score;
+                
+                if (score > maxScore) {
+                    maxScore = score;
+                    bestMatch = archetype;
+                }
+            });
+            
+            // 如果没有明显得分，随机选择一个
+            if (maxScore <= 0) {
+                bestMatch = archetypes[Math.floor(Math.random() * archetypes.length)];
+            }
+            
+            displayResult(bestMatch);
+            recordTestComplete();
+        }
+
+        function displayResult(archetype) {
+            document.getElementById('arcanaSymbol').textContent = archetype.symbol;
+            document.getElementById('resultCode').textContent = archetype.code;
+            document.getElementById('resultName').textContent = archetype.name;
+            document.getElementById('resultSubtitle').textContent = archetype.subtitle;
+            document.getElementById('resultDescription').textContent = archetype.desc;
+            
+            // 生成维度评分
+            const dimensionsGrid = document.getElementById('dimensionsGrid');
+            dimensionsGrid.innerHTML = '';
+            
+            const dimensions = [
+                { name: '混沌倾向', key: 'azat' },
+                { name: '知识渴求', key: 'yogs' },
+                { name: '生命本能', key: 'shub' },
+                { name: '操控欲望', key: 'nyar' },
+                { name: '深海召唤', key: 'cthu' },
+                { name: '孤独程度', key: 'herm' },
+                { name: '行动魄力', key: 'char' }
+            ];
+            
+            dimensions.forEach(dim => {
+                const value = userScores[dim.key] || 0;
+                const maxValue = 15;
+                const percentage = Math.min(100, Math.round((value / maxValue) * 100));
+                let label = '低';
+                if (percentage > 33) label = '中';
+                if (percentage > 66) label = '高';
+                if (percentage > 85) label = '极高';
+                
+                const item = document.createElement('div');
+                item.className = 'dimension-item';
+                item.innerHTML = `
+                    <div class="dimension-name">${dim.name}</div>
+                    <div class="dimension-value">${label} (${percentage}%)</div>
+                `;
+                dimensionsGrid.appendChild(item);
+            });
+            
+            showPage('resultPage');
+        }
+
+        // ==================== 支付功能 ====================
+
+        let selectedPaymentMethod = null;
+
+        function selectPayment(method) {
+            selectedPaymentMethod = method;
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            // 显示二维码占位符
+            document.getElementById('qrPlaceholder').classList.add('active');
+        }
+
+        function processPayment() {
+            if (!selectedPaymentMethod) {
+                showModal('请选择支付方式', '请先选择支付宝或微信支付，然后点击确认支付。');
+                return;
+            }
+            
+            // 模拟支付处理
+            showModal('支付确认', '在实际部署时，这里将调起真实的支付接口（支付宝/微信支付）。支付成功后即可再次进行测试。');
+            
+            // 模拟支付成功
+            setTimeout(() => {
+                hasPaid = true;
+                closeModal();
+                startQuiz();
+            }, 2000);
+        }
+
+        function backToHome() {
+            showPage('homePage');
+        }
+
+        // ==================== 分享功能 ====================
+
+        function shareResult(platform) {
+            const resultCode = document.getElementById('resultCode').textContent;
+            const resultName = document.getElementById('resultName').textContent;
+            const shareText = `我在【深渊回响】测试中觉醒为${resultCode}·${resultName}！来测测你的克苏鲁觉醒原型吧：`;
+            const shareUrl = window.location.href;
+            
+            switch(platform) {
+                case 'wechat':
+                    showModal('分享到微信', '请截图保存结果，或直接复制链接分享给朋友。');
+                    break;
+                case 'weibo':
+                    window.open(`https://service.weibo.com/share/share.php?title=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`);
+                    break;
+                case 'copy':
+                    navigator.clipboard.writeText(shareText + ' ' + shareUrl).then(() => {
+                        showModal('复制成功', '链接已复制到剪贴板，快去分享吧！');
+                    });
+                    break;
+            }
+        }
+
+        function handleRestart() {
+            const testCount = parseInt(localStorage.getItem('cthulhu_test_count') || '0');
+            
+            if (testCount > 0) {
+                hasPaid = false;
+                showPage('paymentPage');
+            } else {
+                startQuiz();
+            }
+        }
+
+        // ==================== 辅助功能 ====================
+
+        function toRoman(num) {
+            const roman = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X',
+                          'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX',
+                          'XXI', 'XXII', 'XXIII', 'XXIV', 'XXV'];
+            return roman[num - 1] || num;
+        }
+
+        function showModal(title, text) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalText').textContent = text;
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+
+        // ==================== 初始化 ====================
+
+        function initTypesGrid() {
+            const grid = document.getElementById('typesGrid');
+            const displayTypes = archetypes.slice(0, 12); // 只展示前12个
+            
+            displayTypes.forEach(type => {
+                const card = document.createElement('div');
+                card.className = 'type-card';
+                card.innerHTML = `
+                    <div class="type-code">${type.code}</div>
+                    <div class="type-name">${type.name}</div>
+                    <div class="type-desc">${type.subtitle.replace(/[「」]/g, '')}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // 页面加载时初始化
+        window.onload = function() {
+            initVisitor();
+            initTypesGrid();
+        };
+    </script>
+</body>
+</html>
