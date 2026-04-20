@@ -567,29 +567,8 @@
         .share-buttons-row {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.2rem;
             flex-wrap: wrap;
-        }
-
-        .share-btn {
-            background: transparent;
-            border: 1px solid var(--cthulhu-teal);
-            color: var(--moon-pale);
-            padding: 0.8rem 2rem;
-            font-family: inherit;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            letter-spacing: 0.1em;
-        }
-
-        .share-btn:hover {
-            border-color: var(--gold-ancient);
-            color: var(--gold-ancient);
-            background: rgba(45, 90, 90, 0.2);
         }
 
         .restart-btn {
@@ -835,19 +814,14 @@
                 font-size: 1.2rem;
             }
 
-            .wechat-share-btn {
-                padding: 0.9rem 2.2rem;
-                font-size: 1rem;
+            .share-btn-eldritch {
+                padding: 1rem 2.8rem;
+                font-size: 0.95rem;
                 margin-top: 2rem;
             }
 
             .share-buttons-row {
                 gap: 1.5rem;
-            }
-
-            .share-btn {
-                padding: 1rem 2.5rem;
-                font-size: 1rem;
             }
 
             footer {
@@ -871,38 +845,76 @@
             }
         }
 
-        /* 微信分享按钮 */
-        .wechat-share-btn {
+        /* 克苏鲁风格分享按钮 */
+        .share-btn-eldritch {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 0.6rem;
-            background: transparent;
+            background: linear-gradient(135deg, rgba(26, 58, 58, 0.4) 0%, rgba(45, 27, 78, 0.2) 100%);
             border: 1px solid var(--cthulhu-teal);
             color: var(--moon-pale);
-            padding: 0.7rem 1.8rem;
-            font-family: inherit;
-            font-size: 0.9rem;
+            padding: 0.85rem 2.2rem;
+            font-family: 'Cinzel', 'Noto Serif SC', serif;
+            font-size: 0.85rem;
             cursor: pointer;
             margin-top: 1.5rem;
-            transition: all 0.3s ease;
-            letter-spacing: 0.1em;
+            transition: all 0.4s ease;
+            letter-spacing: 0.15em;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
         }
 
-        .wechat-share-btn:hover {
+        .share-btn-eldritch::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-ancient), transparent);
+            opacity: 0.4;
+            transition: opacity 0.4s ease;
+        }
+
+        .share-btn-eldritch::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.12), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .share-btn-eldritch:hover::before {
+            opacity: 1;
+            box-shadow: 0 0 15px rgba(201, 162, 39, 0.3);
+        }
+
+        .share-btn-eldritch:hover::after {
+            left: 100%;
+        }
+
+        .share-btn-eldritch:hover {
             border-color: var(--gold-ancient);
             color: var(--gold-ancient);
-            background: rgba(45, 90, 90, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(201, 162, 39, 0.15);
         }
 
-        .wx-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #07c160;
-            box-shadow: 0 0 8px rgba(7, 193, 96, 0.5);
-            display: inline-block;
-            flex-shrink: 0;
+        .share-btn-eldritch .rune {
+            color: var(--gold-ancient);
+            font-size: 1rem;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .share-btn-eldritch:hover .rune {
+            opacity: 1;
+            text-shadow: 0 0 10px rgba(201, 162, 39, 0.5);
         }
 
         .share-options {
@@ -1192,8 +1204,8 @@
                 唤醒沉睡的灵魂
             </button>
             <div class="free-badge">首次测试 · 免费</div>
-            <button class="wechat-share-btn" onclick="openWechatShare()">
-                <span class="wx-dot"></span> 分享到微信
+            <button class="share-btn-eldritch" onclick="openWechatShare()">
+                <span class="rune">☌</span> 传播召唤
             </button>
         </div>
 
@@ -1297,11 +1309,15 @@
             <div class="share-section">
                 <p style="color: var(--cthulhu-teal); margin-bottom: 1.5rem; letter-spacing: 0.2em;">分享你的觉醒原型</p>
                 <div class="share-buttons-row">
-                    <button class="share-btn" onclick="openWechatShare()">
-                        <span class="wx-dot"></span> 微信
+                    <button class="share-btn-eldritch" onclick="openWechatShare()">
+                        <span class="rune">☌</span> 微信
                     </button>
-                    <button class="share-btn" onclick="shareResult('weibo')">微博</button>
-                    <button class="share-btn" onclick="shareResult('copy')">复制链接</button>
+                    <button class="share-btn-eldritch" onclick="shareResult('weibo')">
+                        <span class="rune">✧</span> 微博
+                    </button>
+                    <button class="share-btn-eldritch" onclick="shareResult('copy')">
+                        <span class="rune">∞</span> 复制链接
+                    </button>
                 </div>
             </div>
 
