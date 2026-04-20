@@ -1204,15 +1204,21 @@
                 唤醒沉睡的灵魂
             </button>
             <div class="free-badge">首次测试 · 免费</div>
-            <button class="share-btn-eldritch" onclick="openWechatShare()">
-                <span class="rune">☌</span> 分享到微信
-            </button>
         </div>
 
         <div class="types-showcase">
             <h2 class="section-title">27种深渊觉醒原型</h2>
             <div class="types-grid" id="typesGrid">
                 <!-- 人格类型将通过JS动态生成 -->
+            </div>
+        </div>
+
+        <div class="share-section">
+            <p style="color: var(--cthulhu-teal); margin-bottom: 1.5rem; letter-spacing: 0.2em;">传播深渊的召唤</p>
+            <div class="share-buttons-row">
+                <button class="share-btn-eldritch" onclick="openWechatShare()">
+                    <span class="rune">☌</span> 分享到微信
+                </button>
             </div>
         </div>
 
@@ -1306,24 +1312,24 @@
                 </div>
             </div>
 
-            <div class="share-section">
-                <p style="color: var(--cthulhu-teal); margin-bottom: 1.5rem; letter-spacing: 0.2em;">分享你的觉醒原型</p>
-                <div class="share-buttons-row">
-                    <button class="share-btn-eldritch" onclick="openWechatShare()">
-                        <span class="rune">☌</span> 微信
-                    </button>
-                    <button class="share-btn-eldritch" onclick="shareResult('weibo')">
-                        <span class="rune">✧</span> 微博
-                    </button>
-                    <button class="share-btn-eldritch" onclick="shareResult('copy')">
-                        <span class="rune">∞</span> 复制链接
-                    </button>
-                </div>
-            </div>
-
             <button class="restart-btn" onclick="handleRestart()">
                 再次觉醒（需支付 ¥3.00）
             </button>
+        </div>
+
+        <div class="share-section">
+            <p style="color: var(--cthulhu-teal); margin-bottom: 1.5rem; letter-spacing: 0.2em;">分享你的觉醒原型</p>
+            <div class="share-buttons-row">
+                <button class="share-btn-eldritch" onclick="openWechatShare()">
+                    <span class="rune">☌</span> 微信
+                </button>
+                <button class="share-btn-eldritch" onclick="shareResult('weibo')">
+                    <span class="rune">✧</span> 微博
+                </button>
+                <button class="share-btn-eldritch" onclick="shareResult('copy')">
+                    <span class="rune">∞</span> 复制链接
+                </button>
+            </div>
         </div>
 
         <footer>
