@@ -1334,23 +1334,16 @@
             </div>
 
             <div class="payment-methods">
-                <div class="payment-method" onclick="selectPayment('alipay')">
+                <div class="payment-method selected" onclick="selectPayment('alipay')" id="alipayMethod">
                     <span class="payment-method-icon">💳</span>
                     <span>支付宝支付</span>
                 </div>
-                <div class="payment-method" onclick="selectPayment('wechat')">
-                    <span class="payment-method-icon">💬</span>
-                    <span>微信支付</span>
-                </div>
             </div>
 
-            <div class="qr-placeholder" id="qrPlaceholder">
-                [ 二维码区域 ]<br>
-                实际部署时接入支付接口
-            </div>
+            <div id="payFormContainer" style="display:none;"></div>
 
             <button class="btn-primary" onclick="processPayment()" id="payBtn" style="margin-top: 2rem;">
-                确认支付
+                <span id="payBtnText">确认支付 ¥3.00</span>
             </button>
 
             <button class="share-btn" onclick="backToHome()" style="margin-top: 1rem;">
@@ -2067,26 +2060,50 @@
                 el.classList.remove('selected');
             });
             event.currentTarget.classList.add('selected');
-            
-            // 显示二维码占位符
-            document.getElementById('qrPlaceholder').classList.add('active');
         }
 
-        function processPayment() {
-            if (!selectedPaymentMethod) {
-                showModal('请选择支付方式', '请先选择支付宝或微信支付，然后点击确认支付。');
-                return;
+        async function processPayment() {
+            const btn = document.getElementById('payBtn');
+            const btnText = document.getElementById('payBtnText');
+            
+            try {
+                btn.disabled = true;
+                btnText.textContent = '正在召唤深渊...';
+                
+                const response = await fetch('/api/create-order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        amount: 3.00,
+                        productName: '深渊回响 - 再次觉醒'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (!data.success) {
+                    throw new Error(data.message || '创建订单失败');
+                }
+                
+                // 保存订单号到本地，支付回来后检查
+                localStorage.setItem('cthulhu_pending_order', data.orderId);
+                
+                // 将支付宝返回的支付表单注入页面并自动提交
+                const container = document.getElementById('payFormContainer');
+                container.innerHTML = data.html;
+                const form = container.querySelector('form');
+                if (form) {
+                    form.submit();
+                } else {
+                    throw new Error('支付表单生成异常');
+                }
+                
+            } catch (error) {
+                console.error('支付失败:', error);
+                showModal('支付失败', error.message || '连接深渊失败，请稍后再试');
+                btn.disabled = false;
+                btnText.textContent = '确认支付 ¥3.00';
             }
-            
-            // 模拟支付处理
-            showModal('支付确认', '在实际部署时，这里将调起真实的支付接口（支付宝/微信支付）。支付成功后即可再次进行测试。');
-            
-            // 模拟支付成功
-            setTimeout(() => {
-                hasPaid = true;
-                closeModal();
-                startQuiz();
-            }, 2000);
         }
 
         function backToHome() {
@@ -2392,7 +2409,53 @@
         window.onload = function() {
             initVisitor();
             initTypesGrid();
+            checkPaymentReturn();
         };
+
+        // 检测从支付宝支付完成后的回调
+        async function checkPaymentReturn() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const payment = urlParams.get('payment');
+            const orderId = urlParams.get('orderId');
+            
+            if (payment === 'success' && orderId) {
+                // 清除 URL 参数，避免刷新重复触发
+                window.history.replaceState({}, document.title, window.location.pathname);
+                
+                showModal('深渊之门已开启', '支付成功，正在为你重新建立与深渊的连接...');
+                
+                try {
+                    // 可选：向后端确认订单状态
+                    const response = await fetch(`/api/order-status?orderId=${orderId}`);
+                    const data = await response.json();
+                    
+                    if (data.success && data.order.status === 'PAID') {
+                        hasPaid = true;
+                        localStorage.removeItem('cthulhu_pending_order');
+                        setTimeout(() => {
+                            closeModal();
+                            startQuiz();
+                        }, 1500);
+                    } else {
+                        // 异步通知可能有延迟，直接放行
+                        hasPaid = true;
+                        localStorage.removeItem('cthulhu_pending_order');
+                        setTimeout(() => {
+                            closeModal();
+                            startQuiz();
+                        }, 1500);
+                    }
+                } catch (e) {
+                    // 即使查询失败也放行，避免卡住用户
+                    hasPaid = true;
+                    localStorage.removeItem('cthulhu_pending_order');
+                    setTimeout(() => {
+                        closeModal();
+                        startQuiz();
+                    }, 1500);
+                }
+            }
+        }
     </script>
 </body>
 </html>

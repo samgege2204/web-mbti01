@@ -1,0 +1,30 @@
+{
+  "name": "mbti",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samgege2204/web-mbti01.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/samgege2204/web-mbti01/issues"
+  },
+  "homepage": "https://github.com/samgege2204/web-mbti01#readme",
+  "dependencies": {
+    "alipay-sdk": "^4.14.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "localtunnel": "^2.0.2",
+    "uuid": "^14.0.0"
+  }
+}
