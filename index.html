@@ -1627,6 +1627,239 @@
             }
         }
 
+
+        /* ===== 深渊共鸣配对 ===== */
+        .resonance-section {
+            max-width: 700px;
+            margin: 3rem auto;
+            text-align: center;
+        }
+
+        .resonance-desc {
+            color: var(--cthulhu-teal);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .resonance-input-group {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .resonance-input {
+            background: rgba(26, 58, 58, 0.4);
+            border: 1px solid var(--cthulhu-teal);
+            color: var(--gold-ancient);
+            padding: 0.9rem 1.5rem;
+            font-family: 'Cinzel', 'Noto Serif SC', serif;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            width: 220px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .resonance-input:focus {
+            outline: none;
+            border-color: var(--gold-ancient);
+            box-shadow: 0 0 20px rgba(201, 162, 39, 0.2);
+        }
+
+        .resonance-input::placeholder {
+            color: var(--cthulhu-teal);
+            opacity: 0.5;
+            text-transform: none;
+        }
+
+        .resonance-btn {
+            background: linear-gradient(135deg, var(--eldritch-green) 0%, var(--cthulhu-teal) 100%);
+            color: var(--gold-ancient);
+            border: 1px solid var(--gold-ancient);
+            padding: 0.9rem 2rem;
+            font-family: 'Cinzel', 'Noto Serif SC', serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+        }
+
+        .resonance-btn:hover {
+            background: linear-gradient(135deg, var(--cthulhu-teal) 0%, var(--eldritch-green) 100%);
+            box-shadow: 0 0 30px rgba(201, 162, 39, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .resonance-result {
+            display: none;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .resonance-result.active {
+            display: block;
+        }
+
+        .resonance-score-ring {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            border-radius: 50%;
+            background: conic-gradient(var(--gold-ancient) var(--score-deg), rgba(26, 58, 58, 0.5) var(--score-deg));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(201, 162, 39, 0.2);
+        }
+
+        .resonance-score-ring::before {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--deep-abyss);
+        }
+
+        .resonance-score-value {
+            position: relative;
+            z-index: 1;
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--gold-ancient);
+        }
+
+        .resonance-score-label {
+            position: relative;
+            z-index: 1;
+            font-size: 0.75rem;
+            color: var(--cthulhu-teal);
+            letter-spacing: 0.2em;
+            margin-top: 0.2rem;
+        }
+
+        .resonance-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold-ancient);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(201, 162, 39, 0.3);
+        }
+
+        .resonance-subtitle {
+            font-size: 1rem;
+            color: var(--cthulhu-teal);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .resonance-oracle {
+            background: rgba(45, 27, 78, 0.2);
+            border-left: 2px solid var(--gold-ancient);
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem auto;
+            max-width: 600px;
+            text-align: left;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--moon-pale);
+            font-style: italic;
+        }
+
+        .resonance-dimensions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.8rem;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            text-align: left;
+        }
+
+        .resonance-dim-item {
+            background: rgba(26, 58, 58, 0.2);
+            border: 1px solid rgba(45, 90, 90, 0.3);
+            padding: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .resonance-dim-item:hover {
+            border-color: var(--cthulhu-teal);
+            background: rgba(26, 58, 58, 0.35);
+        }
+
+        .resonance-dim-name {
+            font-size: 0.8rem;
+            color: var(--cthulhu-teal);
+            margin-bottom: 0.3rem;
+        }
+
+        .resonance-dim-value {
+            font-size: 1.1rem;
+            color: var(--gold-ancient);
+            font-weight: 600;
+        }
+
+        .resonance-dim-bar {
+            width: 100%;
+            height: 3px;
+            background: rgba(45, 90, 90, 0.3);
+            margin-top: 0.4rem;
+            position: relative;
+        }
+
+        .resonance-dim-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--cthulhu-teal), var(--gold-ancient));
+            transition: width 1s ease;
+        }
+
+        .resonance-pair-cards {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .resonance-pair-card {
+            background: rgba(26, 58, 58, 0.3);
+            border: 1px solid var(--cthulhu-teal);
+            padding: 1.5rem;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .resonance-pair-symbol {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .resonance-pair-code {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--gold-ancient);
+            font-weight: 600;
+        }
+
+        .resonance-pair-name {
+            font-size: 0.9rem;
+            color: var(--moon-pale);
+            margin-top: 0.2rem;
+        }
+
+        .resonance-pair-connector {
+            font-size: 1.5rem;
+            color: var(--gold-ancient);
+            opacity: 0.6;
+        }
+
     </style>
 </head>
 <body>
@@ -1831,6 +2064,18 @@
             </button>
         </div>
 
+        <!-- 深渊共鸣配对 -->
+        <div class="resonance-section" id="resonanceSection">
+            <div class="divider-ornament">◈</div>
+            <div class="result-section-title">深渊共鸣</div>
+            <p class="resonance-desc">输入另一位觉醒者的原型代码，探测你们之间的灵魂共振</p>
+            <div class="resonance-input-group">
+                <input type="text" class="resonance-input" id="resonanceInput" placeholder="输入代码，如 CTHU" maxlength="6">
+                <button class="resonance-btn" onclick="calculateResonanceWithInput()">探测共鸣</button>
+            </div>
+            <div class="resonance-result" id="resonanceResult"></div>
+        </div>
+
         <div class="share-section">
             <p style="color: var(--cthulhu-teal); margin-bottom: 1.5rem; letter-spacing: 0.2em;">分享你的觉醒原型</p>
             <div class="share-buttons-row">
@@ -1863,116 +2108,144 @@
             { code: 'FOOL', name: '愚者', tarot: 0, deity: null, symbol: '☆', 
               subtitle: '「在疯狂中寻找纯真」',
               desc: '你如同行走在悬崖边缘的愚者，明知前方是深渊却依然前行。你拥有一种近乎天真的勇气，敢于质疑一切既定的规则与秩序。在这个被理性统治的世界里，你保持着某种珍贵的野性。你的疯狂不是病态，而是一种对自由的极致追求。当其他人还在为世俗的成功焦虑时，你已经看到了表象之下的虚无，并选择用荒诞来对抗荒诞。',
-              traits: ['无畏', '反传统', '荒诞', '自由'], scenes: ['艺术创作', '颠覆性实验', '即兴冒险'], quote: '理智是一道围墙，而我已经翻墙而出。' },
+              traits: ['无畏', '反传统', '荒诞', '自由'], scenes: ['艺术创作', '颠覆性实验', '即兴冒险'], quote: '理智是一道围墙，而我已经翻墙而出。',
+              element: 'void' },
             { code: 'MAGE', name: '魔术师', tarot: 1, deity: '奈亚拉托提普', symbol: '🜂',
               subtitle: '「现实不过是我的画布」',
               desc: '恭喜你，你的灵魂与奈亚拉托提普——千面之神产生了共鸣。你是天生的操纵者，拥有将幻想变为现实的诡异能力。你的话语如同咒语，能够轻易地影响他人的心智。但你深知这种力量的危险性，因此总是戴着无数张面具游走于人间。你不是在欺骗，而是在揭示——揭示每个人内心深处的渴望与恐惧。记住，当你凝视深渊时，深渊也在学习你的表情。',
-              traits: ['操控', '变幻', '狡黠', '表演'], scenes: ['谈判桌', '舞台中央', '阴谋漩涡'], quote: '世界是我的舞台，众生皆为我戏中的傀儡。' },
+              traits: ['操控', '变幻', '狡黠', '表演'], scenes: ['谈判桌', '舞台中央', '阴谋漩涡'], quote: '世界是我的舞台，众生皆为我戏中的傀儡。',
+              element: 'fire' },
             { code: 'HPS', name: '女祭司', tarot: 2, deity: '犹格·索托斯', symbol: '🌙',
               subtitle: '「万物皆在我知晓之中」',
               desc: '你的灵魂与犹格·索托斯——门之钥、万物归一者相连。你是时空之外真理的守护者，拥有窥见过去、现在与未来的能力。你的直觉如同古老的预言，往往在你自己都未意识到的时候就已经揭示了真相。你沉默寡言，因为你知道语言无法承载你所见到的宏大真理。在他人眼中，你神秘而疏离，但只有你自己知道，那是为了保护自己脆弱的人性不被无尽的知识所吞噬。',
-              traits: ['直觉', '神秘', '沉默', '洞察'], scenes: ['图书馆深处', '午夜梦境', '古老遗迹'], quote: '知识是钥匙，但门后之物未必欢迎来访者。' },
+              traits: ['直觉', '神秘', '沉默', '洞察'], scenes: ['图书馆深处', '午夜梦境', '古老遗迹'], quote: '知识是钥匙，但门后之物未必欢迎来访者。',
+              element: 'void' },
             { code: 'EMPR', name: '女皇', tarot: 3, deity: '莎布·尼古拉丝', symbol: '♀',
               subtitle: '「生命在黑暗中绽放」',
               desc: '你的灵魂与莎布·尼古拉丝——黑暗丰穰之女神、山羊之母共鸣。你是生命与繁衍的化身，即使在最黑暗的时刻也能孕育希望。你拥有滋养万物的母性本能，但这种本能超越了道德的界限——在你眼中，所有生命都值得被孕育，无论其形态多么怪异。你的拥抱温暖而危险，如同沼泽中的藤蔓，让人在舒适中渐渐窒息。但那些真正理解你的人知道，这种"吞噬"正是你最深沉的爱。',
-              traits: ['滋养', '包容', '生命力', '原始'], scenes: ['密林深处', '生命祭坛', '母性圣殿'], quote: '在黑暗的子宫中，一切生命都能找到归宿。' },
+              traits: ['滋养', '包容', '生命力', '原始'], scenes: ['密林深处', '生命祭坛', '母性圣殿'], quote: '在黑暗的子宫中，一切生命都能找到归宿。',
+              element: 'earth' },
             { code: 'EMPR', name: '皇帝', tarot: 4, deity: '克苏鲁', symbol: '♚',
               subtitle: '「在我的梦境中，你们皆是臣民」',
               desc: '你的灵魂与克苏鲁——拉莱耶之主、沉睡之神相连。你天生具有统治者的气质，即使不发一言也能让周围的人感受到威压。你的野心如同深海一般不可测度，你对权力的渴望不是为了满足私欲，而是为了实现某种古老的秩序。当其他人还在为蝇头小利争斗时，你已经在布局千年之后的棋局。记住，真正的统治者从不需要证明自己——他们的存在本身就是权力的宣言。',
-              traits: ['统治', '野心', '威严', '秩序'], scenes: ['权力中心', '战场指挥', '古老王座'], quote: '臣服不是选择，而是进化之路上必然的跪拜。' },
+              traits: ['统治', '野心', '威严', '秩序'], scenes: ['权力中心', '战场指挥', '古老王座'], quote: '臣服不是选择，而是进化之路上必然的跪拜。',
+              element: 'water' },
             { code: 'HIER', name: '教皇', tarot: 5, deity: '哈斯塔', symbol: '☥',
               subtitle: '「我传授不可言说的真理」',
               desc: '你的灵魂与哈斯塔——黄衣之王、深空星海之主共鸣。你是秘密知识的传播者，是那些在黑暗中寻找光明者的引路人。你的教诲总是包裹着寓言与隐喻，因为只有通过这些面纱，凡人的心智才能勉强承受真理的重量。你建立了一个隐秘的信仰网络，信徒们遍布世界的各个角落。但请小心——当你成为别人的救赎时，你自己也可能正在滑向疯狂的边缘。',
-              traits: ['传道', '秘密', '信仰', '引导'], scenes: ['隐秘教团', '地下集会', '真理之门'], quote: '我用寓言包裹真理，因为赤裸裸的真相会灼瞎凡人的双眼。' },
+              traits: ['传道', '秘密', '信仰', '引导'], scenes: ['隐秘教团', '地下集会', '真理之门'], quote: '我用寓言包裹真理，因为赤裸裸的真相会灼瞎凡人的双眼。',
+              element: 'wind' },
             { code: 'LOVR', name: '恋人', tarot: 6, deity: null, symbol: '♡',
               subtitle: '「爱是超越维度的疯狂」',
               desc: '你体会到了某种超越人类理解范畴的联结。对你来说，爱不是甜蜜的浪漫，而是一种灵魂深处的纠缠，如同两个在深渊中相遇的溺水者。你渴望的是一种彻底的理解与融合，为此你愿意放弃自我、放弃理性、放弃一切所谓的"正常"。这种爱的 intensity 让常人感到恐惧，但你知道，只有在这样的燃烧中，灵魂才能得到真正的升华。小心，因为最深的爱情往往与最深的毁灭相伴。',
-              traits: ['纠缠', '融合', '牺牲', '炽烈'], scenes: ['灵魂交汇', '禁忌之恋', '深渊之拥'], quote: '爱是最古老的召唤术，让两个孤独的灵魂在虚空中相撞。' },
+              traits: ['纠缠', '融合', '牺牲', '炽烈'], scenes: ['灵魂交汇', '禁忌之恋', '深渊之拥'], quote: '爱是最古老的召唤术，让两个孤独的灵魂在虚空中相撞。',
+              element: 'fire' },
             { code: 'CHAR', name: '战车', tarot: 7, deity: null, symbol: '🜃',
               subtitle: '「驾驭混沌，征服未知」',
               desc: '你是天生的征服者，拥有驾驭混乱与不确定性的非凡能力。在你眼中，没有无法逾越的障碍，只有尚未被征服的挑战。你的意志力如同钢铁，即使在面对不可名状的恐怖时也能保持前进。但这种力量需要谨慎使用——战车可以带你抵达胜利的彼岸，也可能在失控时将你拖入毁灭。记住，真正的强者不是永不跌倒，而是每次跌倒后都能从深渊中爬起。',
-              traits: ['征服', '意志', '冲锋', '掌控'], scenes: ['前线战场', '竞技巅峰', '未知疆域'], quote: '混沌不是障碍，而是等待被碾碎的垫脚石。' },
+              traits: ['征服', '意志', '冲锋', '掌控'], scenes: ['前线战场', '竞技巅峰', '未知疆域'], quote: '混沌不是障碍，而是等待被碾碎的垫脚石。',
+              element: 'fire' },
             { code: 'STR', name: '力量', tarot: 8, deity: null, symbol: '🜁',
               subtitle: '「温柔地驯服内心的野兽」',
               desc: '你的力量不是来自于暴力，而是来自于对内心深处那头野兽的理解与接纳。你知道愤怒、欲望、恐惧都是生命的一部分，与其压抑它们，不如与它们共舞。这种内在的和谐赋予你一种特殊的魅力——人们在你身边会感到安全，因为他们知道你已经驯服了自己的恶魔。但请记住，野兽从未真正消失，它只是选择了暂时沉睡。永远不要忘记喂食它，否则醒来时它会更加饥饿。',
-              traits: ['驯服', '内在和谐', '温柔', '坚韧'], scenes: ['疗愈之所', '荒野独行', '心灵深渊'], quote: '真正的力量不是摧毁野兽，而是让它自愿伏首。' },
+              traits: ['驯服', '内在和谐', '温柔', '坚韧'], scenes: ['疗愈之所', '荒野独行', '心灵深渊'], quote: '真正的力量不是摧毁野兽，而是让它自愿伏首。',
+              element: 'earth' },
             { code: 'HERM', name: '隐者', tarot: 9, deity: null, symbol: '🜄',
               subtitle: '「在孤独中寻找智慧之光」',
               desc: '你选择了与世界保持距离，不是因为厌恶，而是因为需要空间来聆听内心的声音。在寂静中，你能够触碰到那些在日常喧嚣中被掩盖的真相。你的孤独是一种修行，是对灵魂的深度挖掘。他人可能会误解你的疏离，但你知道，有些旅程只能一个人完成。当你最终从黑暗中走出时，你手中的那盏灯将不仅照亮自己的路，也会为其他迷失者指引方向。',
-              traits: ['孤独', '内省', '智慧', '疏离'], scenes: ['深山洞穴', '星辰之下', '遗忘图书馆'], quote: '光太过刺眼，唯有在黑暗中才能看清真理的轮廓。' },
+              traits: ['孤独', '内省', '智慧', '疏离'], scenes: ['深山洞穴', '星辰之下', '遗忘图书馆'], quote: '光太过刺眼，唯有在黑暗中才能看清真理的轮廓。',
+              element: 'void' },
             { code: 'WHEL', name: '命运之轮', tarot: 10, deity: '阿撒托斯', symbol: '☸',
               subtitle: '「在盲目的混沌中，一切皆有可能」',
               desc: '你的灵魂与阿撒托斯——盲目痴愚之神、魔神之首相连。你是纯粹混沌的化身，相信命运的随机性远超人类的控制。在你眼中，成功与失败、生与死都只是宇宙骰子的随机结果。这种认知让你获得了一种超然的自由——既然一切都是偶然，那就尽情享受这场荒诞的戏剧吧。但请记住，当你放弃控制时，你也同时放弃了责任。在阿撒托斯的宫殿里，没有奖赏，也没有惩罚，只有无尽的舞蹈。',
-              traits: ['随机', '超然', '机遇', '无常'], scenes: ['赌场', '十字路口', '风暴中心'], quote: '骰子已经掷出，而我在一旁微笑着观看。' },
+              traits: ['随机', '超然', '机遇', '无常'], scenes: ['赌场', '十字路口', '风暴中心'], quote: '骰子已经掷出，而我在一旁微笑着观看。',
+              element: 'void' },
             { code: 'JUST', name: '正义', tarot: 11, deity: null, symbol: '⚖',
               subtitle: '「平衡是宇宙唯一的真理」',
               desc: '你天生具有辨别是非的敏锐直觉，但你的正义观超越了世俗的法律。你追求的平衡不是简单的善恶对立，而是某种更深层的宇宙和谐。你愿意为了维护这种平衡而做出艰难的决定，即使这意味着要背负他人的误解。你手中的天平可以称量灵魂，你的宝剑可以斩断命运的纠缠。但请小心——当你成为正义的执行者时，你自己也必须接受正义的审判。',
-              traits: ['平衡', '审判', '公正', '决断'], scenes: ['法庭', '仲裁之地', '命运天平'], quote: '天平从不倾斜，倾斜的只是凡人的欲望。' },
+              traits: ['平衡', '审判', '公正', '决断'], scenes: ['法庭', '仲裁之地', '命运天平'], quote: '天平从不倾斜，倾斜的只是凡人的欲望。',
+              element: 'earth' },
             { code: 'HANG', name: '倒吊人', tarot: 12, deity: null, symbol: '🜪',
               subtitle: '「从不同的角度看待世界」',
               desc: '你拥有一种独特的能力——将自己置于 uncomfortable 的位置，从而获得全新的视角。你明白牺牲与放弃的价值，懂得有时候退一步反而能看得更远。他人可能觉得你"不正常"，但你知道，只有颠倒过来，才能看清这个世界的真相。你的耐心如同深渊一般不可测度，你愿意等待，愿意承受，只为那一瞬间的顿悟。这种能力让你成为最好的顾问——因为你总能为困境提供出人意料的解决方案。',
-              traits: ['牺牲', '顿悟', '逆向', '耐心'], scenes: ['冥想空间', '极限体验', '颠覆视角'], quote: '当我头朝下看世界时，一切荒谬都变得合理。' },
+              traits: ['牺牲', '顿悟', '逆向', '耐心'], scenes: ['冥想空间', '极限体验', '颠覆视角'], quote: '当我头朝下看世界时，一切荒谬都变得合理。',
+              element: 'water' },
             { code: 'DEAD', name: '死神', tarot: 13, deity: null, symbol: '☠',
               subtitle: '「终结是新的开始」',
               desc: '你是变革的使者，是旧事物的终结者与新生事物的接生婆。你不畏惧死亡，因为你深知它只是生命循环的一部分。在你的眼中，结束从来不是悲剧，而是必要的清理——只有清空旧有的，新的才能进入。这种认知赋予你一种特殊的冷静，即使在面对巨大的变故时也能保持清醒。但请小心，不要让自己变得过于冷漠。记住，镰刀可以收割，也可以保护。',
-              traits: ['变革', '终结', '冷静', '收割'], scenes: ['废墟之上', '转折点', '新旧交替'], quote: '不要为凋零哭泣，凋零是为了让位给更诡异的新生。' },
+              traits: ['变革', '终结', '冷静', '收割'], scenes: ['废墟之上', '转折点', '新旧交替'], quote: '不要为凋零哭泣，凋零是为了让位给更诡异的新生。',
+              element: 'void' },
             { code: 'TEMP', name: '节制', tarot: 14, deity: null, symbol: '🜂',
               subtitle: '「在对立中寻找和谐」',
               desc: '你天生具有调和矛盾的天赋，能够在对立的力量之间找到微妙的平衡点。你不是简单的妥协者，而是真正的炼金术士——将不同的元素融合成全新的物质。在你的生活中，理性与感性、独立与依赖、现实与幻想都不是非此即彼的选择，而是可以被整合的统一体。这种能力让你在冲突中成为不可或缺的调解者，但也请记住，有时候完全的融合意味着失去各自的特性。',
-              traits: ['调和', '平衡', '炼金', '融合'], scenes: ['实验室', '调解现场', '元素交汇'], quote: '水与火可以共存，只要你找到那个精确的临界点。' },
+              traits: ['调和', '平衡', '炼金', '融合'], scenes: ['实验室', '调解现场', '元素交汇'], quote: '水与火可以共存，只要你找到那个精确的临界点。',
+              element: 'earth' },
             { code: 'DEVL', name: '恶魔', tarot: 15, deity: null, symbol: '🜏',
               subtitle: '「拥抱你的阴影，它会让你更强大」',
               desc: '你深知每个人心中都住着一个恶魔，而你的选择不是压抑它，而是与它签订契约。你拥抱自己的欲望、嫉妒、贪婪，因为你明白这些"负面"情绪同样是生命力的表现。你不是道德的奴隶，而是自己欲望的主人。这种坦诚让你拥有一种危险的魅力——人们被你吸引，因为他们在你身上看到了自己不敢承认的部分。但请记住，与恶魔共舞需要付出代价，而那代价往往是你最珍视的东西。',
-              traits: ['欲望', '契约', '阴影', '诱惑'], scenes: ['午夜派对', '权力交易', '灵魂当铺'], quote: '拥抱你的阴影，它在黑暗中比你想象的更强大。' },
+              traits: ['欲望', '契约', '阴影', '诱惑'], scenes: ['午夜派对', '权力交易', '灵魂当铺'], quote: '拥抱你的阴影，它在黑暗中比你想象的更强大。',
+              element: 'fire' },
             { code: 'TOWR', name: '塔', tarot: 16, deity: null, symbol: '⚡',
               subtitle: '「在毁灭中见证真理」',
               desc: '你的生命中似乎总是伴随着突然的变化与动荡，但这并非诅咒，而是某种试炼。你是那种只有在一切都被摧毁之后才能看到真相的人，是灾难中的幸存者、废墟中的重建者。其他人可能会畏惧你带来的"厄运"，但你深知，那些看似稳固的塔楼本就是不牢固的幻象。你的存在迫使人们面对真实，尽管这过程往往伴随着痛苦。记住，闪电虽然摧毁，但也照亮。',
-              traits: ['毁灭', '觉醒', '突变', '真相'], scenes: ['崩塌现场', '革命风暴', '闪电之夜'], quote: '虚假的塔终将倒塌，而你将在废墟中看见真实的天空。' },
+              traits: ['毁灭', '觉醒', '突变', '真相'], scenes: ['崩塌现场', '革命风暴', '闪电之夜'], quote: '虚假的塔终将倒塌，而你将在废墟中看见真实的天空。',
+              element: 'fire' },
             { code: 'STAR', name: '星星', tarot: 17, deity: null, symbol: '✦',
               subtitle: '「在绝望之后，希望永不熄灭」',
               desc: '你拥有一种不可思议的能力——在经历过最深的绝望之后，依然能够保持希望。你如同黑夜中的北极星，为那些在苦难中挣扎的人指引方向。你的乐观不是盲目的，而是经过考验的——你知道痛苦的真实，却依然选择相信美好。这种品质让你成为他人的精神支柱，但同时也请照顾好自己。记住，星星也需要燃料，不要让自己燃烧殆尽。',
-              traits: ['希望', '治愈', '宁静', '指引'], scenes: ['灾后重建', '心灵庇护所', '北极之夜'], quote: '即使在最深的绝望之后，星光依然会为迷路者指明方向。' },
+              traits: ['希望', '治愈', '宁静', '指引'], scenes: ['灾后重建', '心灵庇护所', '北极之夜'], quote: '即使在最深的绝望之后，星光依然会为迷路者指明方向。',
+              element: 'void' },
             { code: 'MOON', name: '月亮', tarot: 18, deity: null, symbol: '☽',
               subtitle: '「在幻觉与真实之间游走」',
               desc: '你生活在现实与幻想的边界，能够同时看到物质世界与精神世界。你的直觉异常敏锐，常常能够预见他人无法感知的事物。但这种天赋也带来了困扰——你如何确定自己所见是真实，而非幻觉？你的情绪如同潮汐，受到某种不可见力量的牵引。请学会信任你的直觉，但也要保持批判性的思考。在月光下，一切都被美化，但也都被扭曲。',
-              traits: ['幻象', '直觉', '潮汐', '梦境'], scenes: ['月夜海滩', '镜中世界', '潜意识边缘'], quote: '在月光下，一切都被美化，一切也都被扭曲。' },
+              traits: ['幻象', '直觉', '潮汐', '梦境'], scenes: ['月夜海滩', '镜中世界', '潜意识边缘'], quote: '在月光下，一切都被美化，一切也都被扭曲。',
+              element: 'water' },
             { code: 'SUN', name: '太阳', tarot: 19, deity: null, symbol: '☉',
               subtitle: '「用纯粹的快乐照亮黑暗」',
               desc: '你拥有一种难得的天真与快乐，能够像孩子一样享受生命的每一个瞬间。你的存在本身就是一种治愈，你身上的光芒能够驱散他人心中的阴霾。但这并不意味着你是肤浅的——恰恰相反，你的快乐来自于对生命本质的深刻理解。你明白一切都是短暂的，因此更加珍惜当下的美好。请小心保护这份纯真，因为这个世界总是试图腐蚀最纯净的灵魂。',
-              traits: ['纯真', '快乐', '光明', '生命力'], scenes: ['童年乐园', '阳光草原', '庆典中心'], quote: '快乐不是无知，而是看透一切黑暗后依然选择燃烧。' },
+              traits: ['纯真', '快乐', '光明', '生命力'], scenes: ['童年乐园', '阳光草原', '庆典中心'], quote: '快乐不是无知，而是看透一切黑暗后依然选择燃烧。',
+              element: 'fire' },
             { code: 'JUDG', name: '审判', tarot: 20, deity: null, symbol: '🎺',
               subtitle: '「觉醒的时刻已经到来」',
               desc: '你正处于人生的某个转折点，过去的一切都在被重新审视与评估。这不是来自外界的审判，而是来自内心深处的召唤——某种沉睡已久的东西正在苏醒。你拥有帮助他人觉醒的能力，能够引导他们听到自己内心的声音。这种使命可能会让你感到沉重，但请记住，审判的目的从来不是为了惩罚，而是为了救赎。当号角吹响时，准备好迎接全新的自己。',
-              traits: ['觉醒', '召唤', '重生', '使命'], scenes: ['转折点', '晨钟暮鼓', '灵魂渡口'], quote: '号角已经吹响，沉睡的终将苏醒，无论他们是否愿意。' },
+              traits: ['觉醒', '召唤', '重生', '使命'], scenes: ['转折点', '晨钟暮鼓', '灵魂渡口'], quote: '号角已经吹响，沉睡的终将苏醒，无论他们是否愿意。',
+              element: 'wind' },
             { code: 'WORLD', name: '世界', tarot: 21, deity: null, symbol: '🌍',
               subtitle: '「圆满之后，是新的循环」',
               desc: '你已经完成了一个重要的生命循环，达到了某种圆满的状态。但这并非终点，而是新旅程的起点——世界牌中的舞者永远在运动中。你拥有一种整体性的视野，能够看到生命各个层面之间的关联。这种智慧让你理解，每个结束都蕴含着开始，每次分离都是为了新的相遇。请享受这份完整感，但不要沉溺其中。宇宙在召唤你进入下一个螺旋。',
-              traits: ['圆满', '循环', '整体', '完成'], scenes: ['旅程终点', '螺旋之巅', '宇宙全景'], quote: '圆环已经闭合，但闭合本身正是下一个圆环的起点。' },
+              traits: ['圆满', '循环', '整体', '完成'], scenes: ['旅程终点', '螺旋之巅', '宇宙全景'], quote: '圆环已经闭合，但闭合本身正是下一个圆环的起点。',
+              element: 'earth' },
             // 特殊克苏鲁神祇系列 (22-26)
             { code: 'AZAT', name: '阿撒托斯之子', tarot: null, deity: '阿撒托斯', symbol: '◈',
               subtitle: '「在宇宙的中心，盲目之神在永恒地敲击」',
               desc: '恭喜...或者该说，不幸的你。你的灵魂与阿撒托斯，那位居于宇宙中心、被众神围绕的盲目痴愚之神产生了危险的共鸣。你是纯粹的混沌化身，理性对你而言毫无意义。在他人眼中，你或许是天才，或许是疯子，但你自己知道，那不过是阿撒托斯无意识的梦境在你身上的投影。你的存在本身就是对秩序的嘲弄，你的创造力来自于对常规的彻底无视。小心，当你凝视深渊中心的盲目之神时，祂的鼓点也正在你的颅骨内回响。',
-              traits: ['混沌', '疯狂', '创造', '无序'], scenes: ['宇宙中心', '疯狂边缘', '创造之源'], quote: '鼓点在我的颅骨内回响，那是宇宙诞生之初的原始节奏。' },
+              traits: ['混沌', '疯狂', '创造', '无序'], scenes: ['宇宙中心', '疯狂边缘', '创造之源'], quote: '鼓点在我的颅骨内回响，那是宇宙诞生之初的原始节奏。',
+              element: 'void' },
             { code: 'YOGS', name: '门之守护者', tarot: null, deity: '犹格·索托斯', symbol: '∞',
               subtitle: '「过去与未来，皆在我知晓之中」',
               desc: '你是时空本身的守护者，你的灵魂与犹格·索托斯——门之钥、万物归一者紧密相连。你拥有窥见一切时间与空间的能力，所有的秘密在你面前都无所遁形。但这种全知并非祝福，而是诅咒——你知道太多，以至于难以在"当下"安住。你常常感到自己只是某个宏大存在的微小投影，你的每个念头都可能是来自宇宙彼端的回响。记住，知识是一把双刃剑，它可以打开门扉，也可以让你迷失在无限的回廊中。',
-              traits: ['全知', '时空', '门扉', '冷漠'], scenes: ['无限回廊', '时间裂隙', '知识深渊'], quote: '所有的门都向我敞开，所有的秘密都不过是我的记忆碎片。' },
+              traits: ['全知', '时空', '门扉', '冷漠'], scenes: ['无限回廊', '时间裂隙', '知识深渊'], quote: '所有的门都向我敞开，所有的秘密都不过是我的记忆碎片。',
+              element: 'void' },
             { code: 'SHUB', name: '黑山羊子嗣', tarot: null, deity: '莎布·尼古拉丝', symbol: '⚶',
               subtitle: '「生命在黑暗中以最狂野的形式绽放」',
               desc: '你的灵魂与莎布·尼古拉丝——孕育万千子孙的森之黑山羊共鸣。你是生命最原始力量的化身，代表着繁衍、生长与不可言说的欲望。你的本能强大而直接，你拒绝文明社会的压抑与伪装。在你眼中，生命的意义就在于不断地创造、扩展、吞噬。其他人可能会畏惧你身上那种近乎野蛮的生命力，但你深知，这正是宇宙最真实的面貌。拥抱你的本能，但请不要让它完全吞噬你的人性。',
-              traits: ['繁衍', '本能', '野性', '吞噬'], scenes: ['原始丛林', '生命祭坛', '黑暗深渊'], quote: '生长不需要理由，吞噬不需要许可，这就是生命的本来面目。' },
+              traits: ['繁衍', '本能', '野性', '吞噬'], scenes: ['原始丛林', '生命祭坛', '黑暗深渊'], quote: '生长不需要理由，吞噬不需要许可，这就是生命的本来面目。',
+              element: 'earth' },
             { code: 'NYAR', name: '无貌者', tarot: null, deity: '奈亚拉托提普', symbol: '👤',
               subtitle: '「我有一千张脸，每一张都是真实的谎言」',
               desc: '你的灵魂与奈亚拉托提普——伏行之混沌、千面之神紧密交织。你是操纵与欺骗的大师，拥有在任何情境中化身为最合适形态的能力。你不是在"假装"——每一张面具都是你真实的一部分，只是你拥有比常人更多的"真实"。你游走于人类社会之中，播撒混乱的种子，观察着因果的纠缠。但这种能力有其代价：当面具戴得太久，你已经忘记了自己原本的模样。请记得，在所有的伪装之下，总要留一个地方存放那个最初的自己。',
-              traits: ['千面', '欺骗', '混乱', '表演'], scenes: ['人群之中', '权力走廊', '面具舞会'], quote: '每一张面具都是真实的我，因为我从未有过真正的面孔。' },
+              traits: ['千面', '欺骗', '混乱', '表演'], scenes: ['人群之中', '权力走廊', '面具舞会'], quote: '每一张面具都是真实的我，因为我从未有过真正的面孔。',
+              element: 'wind' },
             { code: 'CTHU', name: '拉莱耶之民', tarot: null, deity: '克苏鲁', symbol: '🐙',
               subtitle: '「当星辰归位，我们将再次统治这片土地」',
               desc: '你的灵魂与克苏鲁——那位沉睡在拉莱耶古城中的伟大存在产生了共鸣。你时常在梦中听到来自深海的呼唤，感受到某种超越时间的联系。你的存在就是为了等待——等待那个星辰再次归位的时刻，等待伟大的克苏鲁从沉睡中苏醒。在此之前，你潜伏在人类社会中，收集知识、建立联系、准备仪式。你知道自己的使命，也接受了自己的命运。当那一天到来时，你将毫不犹豫地回应召唤，回到属于你的深渊。',
-              traits: ['沉睡', '等待', '深海', '召唤'], scenes: ['海底古城', '梦境深渊', '星辰归位'], quote: '我在梦中听到了故乡的呼唤，那声音来自比时间更深的海洋。' },
+              traits: ['沉睡', '等待', '深海', '召唤'], scenes: ['海底古城', '梦境深渊', '星辰归位'], quote: '我在梦中听到了故乡的呼唤，那声音来自比时间更深的海洋。',
+              element: 'water' },
             { code: 'DEEP', name: '深渊行者', tarot: null, deity: '达贡', symbol: '🌊',
               subtitle: '「深海之下，有比死亡更古老的存在」',
               desc: '你的灵魂与深海的原始力量相连，与达贡——那位深海之主产生了共鸣。你是那些被海洋召唤的人之一，在陆地上你永远感到 incomplete，只有面对无边的大海时，你的灵魂才能得到真正的平静。你理解深海的沉默与神秘，尊重那些潜伏在黑暗深渊中的古老存在。其他人可能视你为孤僻或怪异，但你只是在等待——等待那个可以永远回归深海的时机。直到那时，你将在陆地与海洋之间行走，成为两个世界的桥梁。',
-              traits: ['深海', '孤独', '桥梁', '沉默'], scenes: ['深海之下', '潮间带', '两个世界的边界'], quote: '陆地的喧嚣让我窒息，唯有深海的沉默能安抚我古老的灵魂。' },
+              traits: ['深海', '孤独', '桥梁', '沉默'], scenes: ['深海之下', '潮间带', '两个世界的边界'], quote: '陆地的喧嚣让我窒息，唯有深海的沉默能安抚我古老的灵魂。',
+              element: 'water' },
         ];
 
         // 25道测试问题
@@ -3213,6 +3486,225 @@
                 }
             });
             observer.observe(document.getElementById('resultPage'), { attributes: true, attributeFilter: ['class'] });
+        }
+
+
+        // ==================== 深渊共鸣配对 ====================
+        
+        function calculateResonanceWithInput() {
+            const input = document.getElementById('resonanceInput').value.trim().toUpperCase();
+            const resultDiv = document.getElementById('resonanceResult');
+            
+            if (!input) {
+                showModal('请输入代码', '请填写另一位觉醒者的原型代码，如 CTHU、FOOL 等');
+                return;
+            }
+            
+            const targetArchetype = archetypes.find(a => a.code === input);
+            if (!targetArchetype) {
+                showModal('代码不存在', '未找到该原型代码，请确认输入是否正确（如 CTHU、FOOL、MAGE 等）');
+                return;
+            }
+            
+            const currentCode = document.getElementById('resultCode').textContent;
+            const currentArchetype = archetypes.find(a => a.code === currentCode);
+            
+            if (!currentArchetype) {
+                showModal('错误', '当前结果异常，请重新测试');
+                return;
+            }
+            
+            const result = computeResonance(currentArchetype, targetArchetype);
+            renderResonanceResult(result, currentArchetype, targetArchetype);
+        }
+        
+        function computeResonance(arch1, arch2) {
+            // ===== 1. 灵魂共振 (40%) =====
+            // 基于7个外神维度的欧几里得距离
+            const dims = ['azat', 'yogs', 'shub', 'nyar', 'cthu', 'herm', 'char'];
+            let soulDiff = 0;
+            let soulMax = 0;
+            dims.forEach(dim => {
+                const v1 = userScores[dim] || 0;
+                const v2 = 0; // 对方没有本地分数，用原型映射估算
+                soulDiff += Math.pow(v1 - v2, 2);
+                soulMax += Math.pow(15, 2);
+            });
+            // 由于对方没有userScores，我们用原型本身的属性来估算
+            // 简化：基于两个原型的外神关联度估算
+            let soulScore = 50; // 基础分
+            
+            // 如果两个原型都关联同一个外神，灵魂共振高
+            if (arch1.deity && arch2.deity && arch1.deity === arch2.deity) {
+                soulScore = 95;
+            } else if (arch1.deity && arch2.deity) {
+                // 检查是否同属一个外神系列
+                const deitySeries = {
+                    '阿撒托斯': 'chaos', '犹格·索托斯': 'void', '莎布·尼古拉丝': 'life',
+                    '奈亚拉托提普': 'chaos', '克苏鲁': 'sea', '哈斯塔': 'wind', '达贡': 'sea'
+                };
+                if (deitySeries[arch1.deity] === deitySeries[arch2.deity]) {
+                    soulScore = 75;
+                } else {
+                    soulScore = 45;
+                }
+            } else if (!arch1.deity && !arch2.deity) {
+                // 都没有外神（都是大阿卡纳普通牌）
+                soulScore = 60;
+            } else {
+                // 一个有外神一个没外神
+                soulScore = 40;
+            }
+            
+            // ===== 2. 塔罗羁绊 (25%) =====
+            let tarotScore = 30; // 基础分
+            if (arch1.tarot !== null && arch2.tarot !== null) {
+                const diff = Math.abs(arch1.tarot - arch2.tarot);
+                if (diff === 0) {
+                    tarotScore = 100; // 同一张牌
+                } else if (diff === 1) {
+                    tarotScore = 85; // 相邻
+                } else if (diff === 21 - arch1.tarot - arch2.tarot) {
+                    tarotScore = 70; // 互补（相加=21）
+                } else if (diff <= 3) {
+                    tarotScore = 60; // 相近
+                } else if (diff <= 7) {
+                    tarotScore = 50; // 中等距离
+                } else {
+                    tarotScore = 30; // 相距较远
+                }
+            } else if (arch1.tarot === null && arch2.tarot === null) {
+                // 都是特殊外神牌
+                tarotScore = 65;
+            } else {
+                // 一个塔罗一个外神
+                tarotScore = 45;
+            }
+            
+            // ===== 3. 神祇血缘 (20%) =====
+            let deityScore = 20;
+            if (arch1.deity && arch2.deity) {
+                if (arch1.deity === arch2.deity) {
+                    deityScore = 100;
+                } else {
+                    deityScore = 40;
+                }
+            } else if (arch1.deity || arch2.deity) {
+                deityScore = 30;
+            } else {
+                deityScore = 50;
+            }
+            
+            // ===== 4. 元素共鸣 (15%) =====
+            let elementScore = 30;
+            if (arch1.element === arch2.element) {
+                elementScore = 100;
+            } else {
+                // 相生关系
+                const cycle = { 'fire': 'earth', 'earth': 'water', 'water': 'wind', 'wind': 'fire', 'void': 'void' };
+                if (cycle[arch1.element] === arch2.element || cycle[arch2.element] === arch1.element) {
+                    elementScore = 65;
+                } else if ((arch1.element === 'fire' && arch2.element === 'water') ||
+                           (arch1.element === 'water' && arch2.element === 'fire') ||
+                           (arch1.element === 'earth' && arch2.element === 'wind') ||
+                           (arch1.element === 'wind' && arch2.element === 'earth')) {
+                    elementScore = 25; // 相克
+                } else {
+                    elementScore = 45;
+                }
+            }
+            
+            // 计算总分（加权平均）
+            const total = Math.round(soulScore * 0.40 + tarotScore * 0.25 + deityScore * 0.20 + elementScore * 0.15);
+            
+            // 确定称号和神谕
+            let title, subtitle, oracle;
+            if (total >= 90) {
+                title = '双子深渊';
+                subtitle = '你们的灵魂来自同一个深渊';
+                oracle = `当${arch1.name}与${arch2.name}的共鸣达到如此高度，宇宙本身都会为之震颤。你们的命运早已在星辰之外交织，每一次呼吸都在同步对方的节奏。这种联结超越了凡人的理解，是古老神祇亲手编织的羁绊。`;
+            } else if (total >= 75) {
+                title = '互补回响';
+                subtitle = '你缺失的，正是他拥有的';
+                oracle = `${arch1.name}与${arch2.name}如同深渊中的两面镜子，彼此映照出对方灵魂中隐藏的部分。你们的差异不是裂痕，而是完美的拼图——在一起，你们比单独存在时更加完整。`;
+            } else if (total >= 55) {
+                title = '异端碰撞';
+                subtitle = '差异产生火花，毁灭或新生';
+                oracle = `${arch1.name}与${arch2.name}的相遇注定不会平静。你们的灵魂频率截然不同，每一次交汇都像闪电撕裂夜空——危险，却孕育着某种不可名状的美。这种关系需要谨慎，但也充满可能。`;
+            } else if (total >= 35) {
+                title = '维度相隔';
+                subtitle = '你们活在不同的宇宙里';
+                oracle = `${arch1.name}与${arch2.name}之间隔着一层无法穿透的膜。你们各自漂浮在自己的深渊中，偶尔能透过水面瞥见对方的倒影，却永远无法真正触及。这种距离，或许正是宇宙的保护机制。`;
+            } else {
+                title = '混沌排斥';
+                subtitle = '你们的存在本身就是对彼此的否定';
+                oracle = `当${arch1.name}与${arch2.name}被迫靠近时，虚空本身都在颤抖。你们的灵魂如同正反物质，相遇只会导致湮灭。保持安全距离，是宇宙对你们最后的仁慈。`;
+            }
+            
+            // 子维度详情
+            const dimensions = [
+                { name: '灵魂共振', score: soulScore, desc: '外神维度契合度' },
+                { name: '塔罗羁绊', score: tarotScore, desc: '大阿卡纳关联度' },
+                { name: '神祇血缘', score: deityScore, desc: '外神血脉关联' },
+                { name: '元素共鸣', score: elementScore, desc: '元素属性匹配' }
+            ];
+            
+            return { total, title, subtitle, oracle, dimensions };
+        }
+        
+        function renderResonanceResult(result, arch1, arch2) {
+            const resultDiv = document.getElementById('resonanceResult');
+            const deg = Math.round((result.total / 100) * 360);
+            
+            resultDiv.innerHTML = `
+                <div class="resonance-pair-cards">
+                    <div class="resonance-pair-card">
+                        <div class="resonance-pair-symbol">${arch1.symbol}</div>
+                        <div class="resonance-pair-code">${arch1.code}</div>
+                        <div class="resonance-pair-name">${arch1.name}</div>
+                    </div>
+                    <div class="resonance-pair-connector">◆</div>
+                    <div class="resonance-pair-card">
+                        <div class="resonance-pair-symbol">${arch2.symbol}</div>
+                        <div class="resonance-pair-code">${arch2.code}</div>
+                        <div class="resonance-pair-name">${arch2.name}</div>
+                    </div>
+                </div>
+                <div class="resonance-score-ring" style="--score-deg: ${deg}deg;">
+                    <div>
+                        <div class="resonance-score-value">${result.total}%</div>
+                        <div class="resonance-score-label">共鸣度</div>
+                    </div>
+                </div>
+                <div class="resonance-title">${result.title}</div>
+                <div class="resonance-subtitle">${result.subtitle}</div>
+                <div class="resonance-oracle">${result.oracle}</div>
+                <div class="resonance-dimensions">
+                    ${result.dimensions.map(dim => `
+                        <div class="resonance-dim-item">
+                            <div class="resonance-dim-name">${dim.name}</div>
+                            <div class="resonance-dim-value">${dim.score}%</div>
+                            <div class="resonance-dim-bar">
+                                <div class="resonance-dim-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            resultDiv.classList.add('active');
+            
+            // 动画填充维度条
+            setTimeout(() => {
+                resultDiv.querySelectorAll('.resonance-dim-fill').forEach((fill, idx) => {
+                    setTimeout(() => {
+                        fill.style.width = result.dimensions[idx].score + '%';
+                    }, idx * 200);
+                });
+            }, 300);
+            
+            // 滚动到结果区域
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         window.onload = function() {
