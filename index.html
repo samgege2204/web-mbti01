@@ -1924,7 +1924,7 @@
                     <span class="stat-label">觉醒原型</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">25</span>
+                    <span class="stat-number">52</span>
                     <span class="stat-label">灵魂拷问</span>
                 </div>
             </div>
@@ -2248,7 +2248,7 @@
               element: 'water' },
         ];
 
-        // 25道测试问题
+        // 52道测试问题
         const questions = [
             {
                 text: '当你凝视夜空时，你通常感受到的是...',
@@ -2474,7 +2474,249 @@
                     { text: '寻找平衡，在保持理智的前提下接近真相', scores: { temp: 3, herm: 2, hier: 2 } },
                     { text: '质疑这个选择本身，或许有第三条路', scores: { nyar: 3, mage: 2, azat: 2 } }
                 ]
-            }
+            {
+                text: '如果你发现一本用未知语言写成的古籍，你会...',
+                options: [
+                    { text: '深入研究，不惜一切代价破译它', scores: { yogs: 3, hps: 2, thin: 2 } },
+                    { text: '烧掉它，有些知识不该被人类触碰', scores: { hier: 3, ctrl: 2, malo: 1 } },
+                    { text: '用它作为道具，编造一个神秘的传说', scores: { nyar: 3, mage: 2, fake: 1 } },
+                    { text: '把它放在一边，等合适的人出现', scores: { herm: 3, dead: 1, woc: 1 } }
+                ]
+            },
+            {
+                text: '当周围所有人都否认你亲眼所见的事物时，你会...',
+                options: [
+                    { text: '坚持真相，即使全世界都说我疯了', scores: { cthu: 3, azat: 2, fool: 2 } },
+                    { text: '怀疑自己，也许我真的看错了', scores: { moon: 3, woc: 2, ohno: 2 } },
+                    { text: '默默收集证据，等待时机证明', scores: { herm: 3, thin: 2, yogs: 2 } },
+                    { text: '利用这个"幻觉"创作艺术或文学', scores: { mage: 3, shub: 2, fake: 1 } }
+                ]
+            },
+            {
+                text: '你如何看待梦境与现实之间的界限？',
+                options: [
+                    { text: '梦境是另一个真实的世界', scores: { cthu: 3, yogs: 2, moon: 2 } },
+                    { text: '梦境只是大脑的随机放电', scores: { dead: 3, thin: 2, zzzz: 1 } },
+                    { text: '梦境是潜意识传递信息的通道', scores: { hps: 3, moon: 2, star: 1 } },
+                    { text: '现实本身可能就是一场梦', scores: { azat: 3, fool: 2, nyar: 1 } }
+                ]
+            },
+            {
+                text: '如果有一个机会可以知晓宇宙的终极真理，但代价是失去理智，你会...',
+                options: [
+                    { text: '毫不犹豫地接受，真理高于一切', scores: { yogs: 3, azat: 2, mage: 2 } },
+                    { text: '拒绝，没有理智的自我不再是我', scores: { ctrl: 3, just: 2, boss: 1 } },
+                    { text: '寻找不需要付出代价的方法', scores: { nyar: 3, temp: 2, hier: 1 } },
+                    { text: '让别人去试，我在一旁观察', scores: { herm: 3, nyar: 1, dead: 1 } }
+                ]
+            },
+            {
+                text: '你更喜欢哪种居住环境？',
+                options: [
+                    { text: '繁华都市的中心，被人群包围', scores: { nyar: 3, lovr: 2, sun: 1 } },
+                    { text: '偏远的山林或海边，与世隔绝', scores: { herm: 3, cthu: 2, deep: 2 } },
+                    { text: '古老的小镇，充满历史和秘密', scores: { yogs: 3, hier: 2, moon: 1 } },
+                    { text: '无所谓，我在哪里都能适应', scores: { azat: 3, monk: 1, ojbk: 1 } }
+                ]
+            },
+            {
+                text: '面对不可名状的恐怖时，你的第一反应是...',
+                options: [
+                    { text: '转身逃跑，求生本能压倒一切', scores: { ohno: 3, malo: 2, woc: 1 } },
+                    { text: '僵在原地，被恐惧完全吞噬', scores: { moon: 3, dead: 2, hps: 1 } },
+                    { text: '迎难而上，直面那未知的恐惧', scores: { char: 3, cthu: 2, gogo: 1 } },
+                    { text: '试图理解它，即使它无法理解', scores: { yogs: 3, mage: 2, thin: 1 } }
+                ]
+            },
+            {
+                text: '你相信人类的知识有边界吗？',
+                options: [
+                    { text: '有，有些真理注定无法被人类理解', scores: { hier: 3, ctrl: 2, herm: 1 } },
+                    { text: '没有，只要有足够的时间，一切都能被知晓', scores: { yogs: 3, mage: 2, sun: 1 } },
+                    { text: '边界就是被突破的，每次突破都伴随着疯狂', scores: { azat: 3, cthu: 2, moon: 1 } },
+                    { text: '我不关心，活在当下就好', scores: { monk: 3, ojbk: 2, sun: 1 } }
+                ]
+            },
+            {
+                text: '如果必须牺牲一个人来拯救全人类，你会...',
+                options: [
+                    { text: '做出这个艰难的决定，为了大局', scores: { just: 3, boss: 2, char: 1 } },
+                    { text: '拒绝，没有人有权力决定谁该死', scores: { lovr: 3, monk: 2, world: 1 } },
+                    { text: '寻找第三条路，也许还有别的选择', scores: { temp: 3, nyar: 2, mage: 1 } },
+                    { text: '让命运决定，抛硬币或抽签', scores: { whel: 3, azat: 2, fool: 1 } }
+                ]
+            },
+            {
+                text: '你如何看待人类的道德体系？',
+                options: [
+                    { text: '道德是人类最伟大的发明，必须坚守', scores: { just: 3, hier: 2, boss: 1 } },
+                    { text: '道德只是权力的工具，灵活使用', scores: { nyar: 3, mage: 2, shit: 1 } },
+                    { text: '道德在深渊面前毫无意义', scores: { azat: 3, cthu: 2, devl: 1 } },
+                    { text: '道德因人而异，没有绝对标准', scores: { temp: 3, moon: 2, nyar: 1 } }
+                ]
+            },
+            {
+                text: '当你独自一人时，你通常会感到...',
+                options: [
+                    { text: '平静，我享受独处的时光', scores: { herm: 3, monk: 2, star: 1 } },
+                    { text: '焦虑，我需要他人的陪伴', scores: { lovr: 3, mum: 2, sun: 1 } },
+                    { text: '创造力爆发，孤独激发灵感', scores: { mage: 3, shub: 2, yogs: 1 } },
+                    { text: '与某种超越性存在相连的感觉', scores: { yogs: 3, cthu: 2, hps: 1 } }
+                ]
+            },
+            {
+                text: '如果有一种力量可以让你永生，但会让你逐渐失去人形，你会...',
+                options: [
+                    { text: '接受，生命形式只是容器', scores: { shub: 3, cthu: 2, yogs: 1 } },
+                    { text: '拒绝，人性比寿命更重要', scores: { lovr: 3, just: 2, monk: 1 } },
+                    { text: '犹豫，取决于还能保留多少自我', scores: { temp: 3, herm: 2, world: 1 } },
+                    { text: '寻找只获得力量不变形的方法', scores: { nyar: 3, mage: 2, boss: 1 } }
+                ]
+            },
+            {
+                text: '你如何看待艺术家的疯狂？',
+                options: [
+                    { text: '疯狂是创造力的代价，值得尊敬', scores: { mage: 3, azat: 2, shub: 1 } },
+                    { text: '疯狂只是病态，不应该被浪漫化', scores: { ctrl: 3, just: 2, thin: 1 } },
+                    { text: '真正的艺术家不需要疯狂', scores: { sun: 3, star: 2, emp: 1 } },
+                    { text: '疯狂与天才的界限本身就是幻觉', scores: { moon: 3, nyar: 2, fool: 1 } }
+                ]
+            },
+            {
+                text: '如果世界真相比你想象的更加黑暗，你希望知道吗？',
+                options: [
+                    { text: '当然，无知才是真正的恐惧', scores: { yogs: 3, cthu: 2, mage: 1 } },
+                    { text: '不，有些真相会摧毁一切美好', scores: { ctrl: 3, sun: 2, lovr: 1 } },
+                    { text: '我想知道，但希望有人能陪我面对', scores: { lovr: 3, hier: 2, char: 1 } },
+                    { text: '真相是什么取决于你怎么定义它', scores: { nyar: 3, moon: 2, azat: 1 } }
+                ]
+            },
+            {
+                text: '你更害怕哪种死亡方式？',
+                options: [
+                    { text: '在无知中慢慢腐烂', scores: { yogs: 3, herm: 2, dead: 1 } },
+                    { text: '在清醒中被恐惧吞噬', scores: { ohno: 3, cthu: 2, moon: 1 } },
+                    { text: '从未真正活过就死去', scores: { char: 3, sun: 2, gogo: 1 } },
+                    { text: '被遗忘，仿佛从未存在', scores: { dead: 3, world: 2, lovr: 1 } }
+                ]
+            },
+            {
+                text: '当你听到一首来自远古的歌谣时，你会...',
+                options: [
+                    { text: '试图理解它的含义和历史', scores: { yogs: 3, hps: 2, thin: 1 } },
+                    { text: '被它的旋律吸引，想要传播它', scores: { nyar: 3, mage: 2, sun: 1 } },
+                    { text: '感到莫名的恐惧，想要远离它', scores: { ohno: 3, cthu: 2, malo: 1 } },
+                    { text: '它唤醒了我体内某种沉睡的东西', scores: { cthu: 3, shub: 2, deep: 1 } }
+                ]
+            },
+            {
+                text: '你认为人类最应该畏惧的是什么？',
+                options: [
+                    { text: '未知的宇宙和它的冷漠', scores: { azat: 3, yogs: 2, herm: 1 } },
+                    { text: '人类自身的贪婪与疯狂', scores: { devl: 3, shub: 2, nyar: 1 } },
+                    { text: '被遗忘，失去存在的意义', scores: { dead: 3, world: 2, lovr: 1 } },
+                    { text: '没有什么真正值得畏惧的', scores: { fool: 3, azat: 2, gogo: 1 } }
+                ]
+            },
+            {
+                text: '如果有一个秘密社团邀请你加入，条件是永远保密，你会...',
+                options: [
+                    { text: '加入，秘密让我感觉自己被选中', scores: { nyar: 3, hier: 2, cthu: 1 } },
+                    { text: '拒绝，我不想活在谎言中', scores: { just: 3, sun: 2, ctrl: 1 } },
+                    { text: '先观察，确认它值得信任', scores: { herm: 3, thin: 2, temp: 1 } },
+                    { text: '创建自己的社团，成为领袖', scores: { boss: 3, mage: 2, char: 1 } }
+                ]
+            },
+            {
+                text: '你如何看待那些声称能与死者交流的人？',
+                options: [
+                    { text: '他们可能是真的，死亡不是终点', scores: { judg: 3, yogs: 2, dead: 1 } },
+                    { text: '骗子或精神病患者', scores: { thin: 3, ctrl: 2, boss: 1 } },
+                    { text: '他们自己可能也搞不清真假', scores: { moon: 3, nyar: 2, hps: 1 } },
+                    { text: '我不想知道答案', scores: { malo: 3, ojbk: 2, herm: 1 } }
+                ]
+            },
+            {
+                text: '如果你发现自己正在缓慢地变成另一种生物，你会...',
+                options: [
+                    { text: '接受它，拥抱新的形态', scores: { shub: 3, cthu: 2, deep: 1 } },
+                    { text: '拼命抵抗，保持人类的身份', scores: { just: 3, lovr: 2, ctrl: 1 } },
+                    { text: '记录下这个过程，作为知识', scores: { yogs: 3, herm: 2, thin: 1 } },
+                    { text: '利用这种变化获得力量', scores: { nyar: 3, mage: 2, boss: 1 } }
+                ]
+            },
+            {
+                text: '当所有人都走向一个方向时，你会...',
+                options: [
+                    { text: '跟随大众，安全最重要', scores: { ctrl: 3, boss: 2, ojbk: 1 } },
+                    { text: '逆着人流，我喜欢与众不同', scores: { fool: 3, shit: 2, cthu: 1 } },
+                    { text: '站在一旁观察，不急于选择', scores: { herm: 3, dead: 2, yogs: 1 } },
+                    { text: '引导人群走向另一个方向', scores: { mage: 3, nyar: 2, boss: 1 } }
+                ]
+            },
+            {
+                text: '你相信有些知识是注定不应该被人类触及的吗？',
+                options: [
+                    { text: '是的，禁忌知识会带来毁灭', scores: { hier: 3, ctrl: 2, malo: 1 } },
+                    { text: '不，知识本身就是中性的', scores: { yogs: 3, sun: 2, thin: 1 } },
+                    { text: '只有准备好的人才能承受某些知识', scores: { hps: 3, hier: 2, temp: 1 } },
+                    { text: '人类没有资格定义什么是禁忌', scores: { azat: 3, fool: 2, cthu: 1 } }
+                ]
+            },
+            {
+                text: '如果必须选择，你更愿意成为统治者还是被统治者？',
+                options: [
+                    { text: '统治者，权力是我的本能', scores: { boss: 3, empr: 2, char: 1 } },
+                    { text: '被统治者，我只想安静地活着', scores: { monk: 3, herm: 2, ojbk: 1 } },
+                    { text: '统治者背后的操纵者', scores: { nyar: 3, mage: 2, yogs: 1 } },
+                    { text: '我不在这个权力结构里', scores: { azat: 3, fool: 2, deep: 1 } }
+                ]
+            },
+            {
+                text: '你如何看待自然界中的捕食与被捕食？',
+                options: [
+                    { text: '这是自然法则，无需道德评判', scores: { shub: 3, dead: 2, azat: 1 } },
+                    { text: '强者有义务保护弱者', scores: { just: 3, lovr: 2, boss: 1 } },
+                    { text: '我想站在食物链的顶端', scores: { boss: 3, shub: 2, char: 1 } },
+                    { text: '生命循环的每一个环节都神圣', scores: { world: 3, shub: 2, temp: 1 } }
+                ]
+            },
+            {
+                text: '当你看到一座废弃的古老建筑时，你会...',
+                options: [
+                    { text: '立刻进去探索，里面一定藏着秘密', scores: { yogs: 3, char: 2, mage: 1 } },
+                    { text: '绕着它走，有些门不该被打开', scores: { hier: 3, malo: 2, ctrl: 1 } },
+                    { text: '在外面观察，寻找进入的最佳时机', scores: { herm: 3, thin: 2, nyar: 1 } },
+                    { text: '感到一种莫名的归属感', scores: { cthu: 3, deep: 2, moon: 1 } }
+                ]
+            },
+            {
+                text: '你认为记忆是可靠的吗？',
+                options: [
+                    { text: '记忆是我们唯一的真实', scores: { lovr: 3, just: 2, sun: 1 } },
+                    { text: '记忆是可以被篡改的，不可信', scores: { nyar: 3, moon: 2, azat: 1 } },
+                    { text: '记忆只是大脑对过去的重构', scores: { thin: 3, dead: 2, yogs: 1 } },
+                    { text: '有些记忆来自比出生更早的地方', scores: { yogs: 3, cthu: 2, hps: 1 } }
+                ]
+            },
+            {
+                text: '如果有一种药物可以让你体验他人的记忆，你会尝试吗？',
+                options: [
+                    { text: '立刻尝试，我想知道别人的世界', scores: { yogs: 3, nyar: 2, mage: 1 } },
+                    { text: '拒绝，我的边界不容侵犯', scores: { just: 3, ctrl: 2, herm: 1 } },
+                    { text: '只在特定对象身上尝试', scores: { lovr: 3, hps: 2, nyar: 1 } },
+                    { text: '担心会失去自我', scores: { moon: 3, ohno: 2, ctrl: 1 } }
+                ]
+            },
+            {
+                text: '你认为时间的概念是...',
+                options: [
+                    { text: '线性的，从过去流向未来', scores: { just: 3, boss: 2, char: 1 } },
+                    { text: '循环的，历史不断重复', scores: { whel: 3, world: 2, shub: 1 } },
+                    { text: '一种幻觉，所有时刻同时存在', scores: { yogs: 3, azat: 2, moon: 1 } },
+                    { text: '我无法理解时间的本质', scores: { fool: 3, hps: 2, dead: 1 } }
+                ]
+            },            }
         ];
 
         // ==================== 状态管理 ====================
