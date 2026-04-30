@@ -2861,84 +2861,84 @@
             const comboScores = [];
             
             // 卷王：高行动力 + 高控制欲 + 高统治欲
-            const juanScore = ((userScores.char || 0) * 0.5 + (userScores.boss || 0) * 0.3 + (userScores.empr || 0) * 0.2) * 1.2;
-            if (juanScore >= 6) comboScores.push({ code: 'JUAN', score: juanScore });
-            
+            const juanScore = ((userScores.char || 0) * 0.5 + (userScores.boss || 0) * 0.3 + (userScores.emp || 0) * 0.2) * 1.2;
+            if (juanScore >= 4) comboScores.push({ code: 'JUAN', score: juanScore });
+
             // 摆烂大师：高混沌 + 高愚者 + 低行动力
             const bailScore = ((userScores.azat || 0) * 0.4 + (userScores.fool || 0) * 0.4 + Math.max(0, 8 - (userScores.char || 0)) * 0.2) * 1.2;
-            if (bailScore >= 6) comboScores.push({ code: 'BAIL', score: bailScore });
-            
+            if (bailScore >= 4) comboScores.push({ code: 'BAIL', score: bailScore });
+
             // 恋爱脑：高恋人 + 高生命 + 高月亮
             const lianScore = ((userScores.lovr || 0) * 0.5 + (userScores.shub || 0) * 0.3 + (userScores.moon || 0) * 0.2) * 1.2;
-            if (lianScore >= 6) comboScores.push({ code: 'LIAN', score: lianScore });
-            
+            if (lianScore >= 4) comboScores.push({ code: 'LIAN', score: lianScore });
+
             // 显眼包：高操控 + 高魔术师 + 高太阳
             const xianScore = ((userScores.nyar || 0) * 0.4 + (userScores.mage || 0) * 0.4 + (userScores.sun || 0) * 0.2) * 1.2;
-            if (xianScore >= 6) comboScores.push({ code: 'XIAN', score: xianScore });
-            
+            if (xianScore >= 4) comboScores.push({ code: 'XIAN', score: xianScore });
+
             // 脆皮打工人：高节制 + 高正义 + 高隐士（表面正常，内里脆弱）
             const cuipScore = ((userScores.temp || 0) * 0.3 + (userScores.just || 0) * 0.3 + (userScores.herm || 0) * 0.4) * 1.1;
-            if (cuipScore >= 6) comboScores.push({ code: 'CUIP', score: cuipScore });
-            
+            if (cuipScore >= 4) comboScores.push({ code: 'CUIP', score: cuipScore });
+
             // 发疯文学家：高魔术师 + 高月亮 + 高愚者
             const fameScore = ((userScores.mage || 0) * 0.4 + (userScores.moon || 0) * 0.4 + (userScores.fool || 0) * 0.2) * 1.2;
-            if (fameScore >= 6) comboScores.push({ code: 'FAME', score: fameScore });
-            
+            if (fameScore >= 4) comboScores.push({ code: 'FAME', score: fameScore });
+
             // 乐子人：高奈亚 + 高命运之轮 + 高愚者
             const leziScore = ((userScores.nyar || 0) * 0.4 + (userScores.whel || 0) * 0.3 + (userScores.fool || 0) * 0.3) * 1.2;
-            if (leziScore >= 6) comboScores.push({ code: 'LEZI', score: leziScore });
-            
+            if (leziScore >= 4) comboScores.push({ code: 'LEZI', score: leziScore });
+
             // 纯爱战神：高恋人 + 高星星 + 高女祭司
             const chunScore = ((userScores.lovr || 0) * 0.5 + (userScores.star || 0) * 0.3 + (userScores.hps || 0) * 0.2) * 1.2;
-            if (chunScore >= 6) comboScores.push({ code: 'CHUN', score: chunScore });
-            
+            if (chunScore >= 4) comboScores.push({ code: 'CHUN', score: chunScore });
+
             // 抽象派：高愚者 + 高月亮 + 高魔术师
             const chouScore = ((userScores.fool || 0) * 0.4 + (userScores.moon || 0) * 0.4 + (userScores.mage || 0) * 0.2) * 1.2;
-            if (chouScore >= 6) comboScores.push({ code: 'CHOU', score: chouScore });
-            
+            if (chouScore >= 4) comboScores.push({ code: 'CHOU', score: chouScore });
+
             // 小镇做题家：高战车 + 高正义 + 高世界
             const zuotScore = ((userScores.char || 0) * 0.5 + (userScores.just || 0) * 0.3 + (userScores.world || 0) * 0.2) * 1.1;
-            if (zuotScore >= 6) comboScores.push({ code: 'ZUOT', score: zuotScore });
-            
+            if (zuotScore >= 4) comboScores.push({ code: 'ZUOT', score: zuotScore });
+
             // 精神内耗者：高月亮 + 高隐士 + 高女祭司
             const nehaScore = ((userScores.moon || 0) * 0.4 + (userScores.herm || 0) * 0.4 + (userScores.hps || 0) * 0.2) * 1.2;
-            if (nehaScore >= 6) comboScores.push({ code: 'NEHA', score: nehaScore });
-            
+            if (nehaScore >= 4) comboScores.push({ code: 'NEHA', score: nehaScore });
+
             // 社死现场王：高愚者 + 高太阳 + 高命运之轮（意外频发）
             const shesScore = ((userScores.fool || 0) * 0.4 + (userScores.sun || 0) * 0.3 + (userScores.whel || 0) * 0.3) * 1.2;
-            if (shesScore >= 6) comboScores.push({ code: 'SHES', score: shesScore });
-            
+            if (shesScore >= 4) comboScores.push({ code: 'SHES', score: shesScore });
+
             // 终极PUA大师：高恶魔 + 高魔术师 + 高奈亚
             const puaScore = ((userScores.devl || 0) * 0.4 + (userScores.mage || 0) * 0.3 + (userScores.nyar || 0) * 0.3) * 1.2;
-            if (puaScore >= 6) comboScores.push({ code: 'PUA_', score: puaScore });
-            
+            if (puaScore >= 4) comboScores.push({ code: 'PUA_', score: puaScore });
+
             // 凡尔赛贵族：高太阳 + 高皇帝 + 高星星
-            const faneScore = ((userScores.sun || 0) * 0.4 + (userScores.empr || 0) * 0.4 + (userScores.star || 0) * 0.2) * 1.2;
-            if (faneScore >= 6) comboScores.push({ code: 'FANE', score: faneScore });
-            
+            const faneScore = ((userScores.sun || 0) * 0.4 + (userScores.emp || 0) * 0.4 + (userScores.star || 0) * 0.2) * 1.2;
+            if (faneScore >= 4) comboScores.push({ code: 'FANE', score: faneScore });
+
             // 格局打开者：高世界 + 高塔 + 高审判（宏观视角）
             const gejuScore = ((userScores.world || 0) * 0.4 + (userScores.towr || 0) * 0.3 + (userScores.judg || 0) * 0.3) * 1.2;
-            if (gejuScore >= 6) comboScores.push({ code: 'GEJU', score: gejuScore });
-            
+            if (gejuScore >= 4) comboScores.push({ code: 'GEJU', score: gejuScore });
+
             // 早八人：高战车 + 高正义 + 高皇帝
-            const zao8Score = ((userScores.char || 0) * 0.5 + (userScores.just || 0) * 0.3 + (userScores.empr || 0) * 0.2) * 1.1;
-            if (zao8Score >= 6) comboScores.push({ code: 'ZAO8', score: zao8Score });
-            
+            const zao8Score = ((userScores.char || 0) * 0.5 + (userScores.just || 0) * 0.3 + (userScores.emp || 0) * 0.2) * 1.1;
+            if (zao8Score >= 4) comboScores.push({ code: 'ZAO8', score: zao8Score });
+
             // 摸鱼大师：高隐士 + 高节制 + 低战车（表面忙，实际闲）
             const moyuScore = ((userScores.herm || 0) * 0.4 + (userScores.temp || 0) * 0.4 + Math.max(0, 8 - (userScores.char || 0)) * 0.2) * 1.2;
-            if (moyuScore >= 6) comboScores.push({ code: 'MOYU', score: moyuScore });
-            
+            if (moyuScore >= 4) comboScores.push({ code: 'MOYU', score: moyuScore });
+
             // 精神股东：高教皇 + 高正义 + 高皇帝（喜欢点评）
-            const gudoScore = ((userScores.hier || 0) * 0.4 + (userScores.just || 0) * 0.3 + (userScores.empr || 0) * 0.3) * 1.1;
-            if (gudoScore >= 6) comboScores.push({ code: 'GUDO', score: gudoScore });
-            
+            const gudoScore = ((userScores.hier || 0) * 0.4 + (userScores.just || 0) * 0.3 + (userScores.emp || 0) * 0.3) * 1.1;
+            if (gudoScore >= 4) comboScores.push({ code: 'GUDO', score: gudoScore });
+
             // 电子榨菜：高太阳 + 高魔术师 + 高恋人（沉迷娱乐）
             const dianScore = ((userScores.sun || 0) * 0.4 + (userScores.mage || 0) * 0.3 + (userScores.lovr || 0) * 0.3) * 1.2;
-            if (dianScore >= 6) comboScores.push({ code: 'DIAN', score: dianScore });
-            
+            if (dianScore >= 4) comboScores.push({ code: 'DIAN', score: dianScore });
+
             // i人：高隐士 + 高女祭司 + 低恋人
             const irenScore = ((userScores.herm || 0) * 0.5 + (userScores.hps || 0) * 0.3 + Math.max(0, 6 - (userScores.lovr || 0)) * 0.2) * 1.2;
-            if (irenScore >= 6) comboScores.push({ code: 'IREN', score: irenScore });
+            if (irenScore >= 4) comboScores.push({ code: 'IREN', score: irenScore });
             
             // 选择最佳 combo 原型
             if (comboScores.length > 0) {
