@@ -1932,7 +1932,7 @@
             <button class="btn-primary" onclick="startQuiz()">
                 唤醒沉睡的灵魂
             </button>
-            <div class="free-badge">首次测试 · 免费</div>
+            <div class="free-badge">无限次免费测试</div>
         </div>
 
         <div class="types-showcase">
@@ -1956,7 +1956,7 @@
 
         <footer>
             <p>深渊回响仅供娱乐 · 唤醒你内在的不可名状</p>
-            <p style="margin-top: 0.5rem;">第二次测试需支付 <span style="color: var(--gold-ancient);">¥3.00</span> 会员费</p>
+            <p style="margin-top: 0.5rem;">探索你内在的不可名状</p>
         </footer>
     </div>
 
@@ -2060,7 +2060,7 @@
             </div>
 
             <button class="restart-btn" onclick="handleRestart()">
-                再次觉醒（需支付 ¥3.00）
+                再次觉醒
             </button>
         </div>
 
@@ -2495,7 +2495,7 @@
             }
             
             const testCount = parseInt(localStorage.getItem('cthulhu_test_count') || '0');
-            hasPaid = testCount === 0; // 首次免费
+            hasPaid = true; // 永久免费，取消测试次数限制
             
             return testCount;
         }
@@ -2517,13 +2517,6 @@
         }
 
         function startQuiz() {
-            const testCount = parseInt(localStorage.getItem('cthulhu_test_count') || '0');
-            
-            if (testCount > 0 && !hasPaid) {
-                showPage('paymentPage');
-                return;
-            }
-            
             currentQuestion = 0;
             userScores = {};
             showPage('quizPage');
@@ -2992,14 +2985,7 @@
         }
 
         function handleRestart() {
-            const testCount = parseInt(localStorage.getItem('cthulhu_test_count') || '0');
-            
-            if (testCount > 0) {
-                hasPaid = false;
-                showPage('paymentPage');
-            } else {
-                startQuiz();
-            }
+            startQuiz();
         }
 
         // ==================== 微信分享功能 ====================
