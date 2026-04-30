@@ -2695,6 +2695,33 @@
                     { text: '记忆只是大脑对过去的重构', scores: { thin: 3, dead: 2, yogs: 1 } },
                     { text: '有些记忆来自比出生更早的地方', scores: { yogs: 3, cthu: 2, hps: 1 } }
                 ]
+            },
+            {
+                text: '当你感到被世界抛弃时，是什么支撑着你...',
+                options: [
+                    { text: '内心的信念，我知道自己不会轻易倒下', scores: { str: 5, hang: 2, monk: 1 } },
+                    { text: '愤怒，我要让所有人看到我的价值', scores: { char: 3, fuck: 2, gogo: 1 } },
+                    { text: '回忆中某个温暖的瞬间', scores: { lovr: 2, star: 2, hps: 1 } },
+                    { text: '什么都不想，等待时间冲淡一切', scores: { dead: 2, zzzz: 2, azat: 1 } }
+                ]
+            },
+            {
+                text: '如果有一个机会可以让你瞬间获得一切，但代价未知...',
+                options: [
+                    { text: '签下这份契约，无论代价是什么', scores: { devl: 5, mage: 2, nyar: 2 } },
+                    { text: '拒绝，我宁愿靠自己的努力', scores: { just: 3, boss: 2, char: 1 } },
+                    { text: '先看看别人怎么选的', scores: { herm: 2, thin: 2, woc: 1 } },
+                    { text: '毁掉这个机会，让它彻底消失', scores: { towr: 5, fuck: 2, shit: 1 } }
+                ]
+            },
+            {
+                text: '一段漫长的旅程终于结束，你站在终点回望...',
+                options: [
+                    { text: '感慨万千，这就是我要的圆满', scores: { world: 5, judg: 2, star: 1 } },
+                    { text: '立刻规划下一段旅程', scores: { char: 3, gogo: 2, yogs: 1 } },
+                    { text: '感到空虚，终点并没有想象中美好', scores: { hang: 3, moon: 2, dead: 1 } },
+                    { text: '转身离开，不带走一片记忆', scores: { azat: 2, dead: 2, shub: 1 } }
+                ]
             }
         ];
 
@@ -3185,7 +3212,22 @@
                         score += userScores[key] || 0;
                     }
                 }
-                
+
+                // 辅助维度：为低分维度原型提供额外得分路径
+                const auxiliary = {
+                    'STR':  { char: 0.35, hang: 0.25, monk: 0.2 },
+                    'TOWR': { dead: 0.35, azat: 0.25, cthu: 0.2 },
+                    'DEVL': { mage: 0.25, nyar: 0.25, shub: 0.2 },
+                    'WORLD':{ judg: 0.3,  star: 0.25, sun:  0.2 },
+                    'HANG': { dead: 0.25, moon: 0.2,  azat: 0.2 }
+                };
+                const aux = auxiliary[archetype.code];
+                if (aux) {
+                    for (let [dim, weight] of Object.entries(aux)) {
+                        score += (userScores[dim] || 0) * weight;
+                    }
+                }
+
                 archetypeScores[archetype.code] = score;
                 
                 if (score > maxScore) {
@@ -3321,7 +3363,22 @@
                     const key = deityMap[arch.deity];
                     if (key) score += userScores[key] || 0;
                 }
-                
+
+                // 辅助维度（与主评分保持一致）
+                const aux2 = {
+                    'STR':  { char: 0.35, hang: 0.25, monk: 0.2 },
+                    'TOWR': { dead: 0.35, azat: 0.25, cthu: 0.2 },
+                    'DEVL': { mage: 0.25, nyar: 0.25, shub: 0.2 },
+                    'WORLD':{ judg: 0.3,  star: 0.25, sun:  0.2 },
+                    'HANG': { dead: 0.25, moon: 0.2,  azat: 0.2 }
+                };
+                const auxMap = aux2[arch.code];
+                if (auxMap) {
+                    for (let [dim, weight] of Object.entries(auxMap)) {
+                        score += (userScores[dim] || 0) * weight;
+                    }
+                }
+
                 scores.push({ archetype: arch, score });
             });
             
