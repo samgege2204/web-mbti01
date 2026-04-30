@@ -2698,8 +2698,256 @@
             }
         ];
 
+        // 题目集合 B（变体题库，与 A 评分结构完全一致）
+        const questionsSetB = [
+            {
+                text: '当你在深海中潜行时，你感受到的是...',
+                options: [
+                    { text: '宁静与祥和，海水让我感到被拥抱', scores: { sun: 3, star: 2, moon: 1 } },
+                    { text: '一种莫名的恐惧，仿佛深海在注视着我', scores: { nyar: 3, azat: 2, cthu: 2 } },
+                    { text: '探索的冲动，海底一定藏着古老的秘密', scores: { yogs: 3, mage: 2, char: 2 } },
+                    { text: '虚无与冷漠，一切终将被海水吞没', scores: { dead: 3, shub: 1, herm: 2 } },
+                ]
+            },
+            {
+                text: '如果一本古书在你面前自动翻开，你会...',
+                options: [
+                    { text: '仔细阅读，试图理解其中的古老文字', scores: { yogs: 3, hps: 2, hier: 2 } },
+                    { text: '感到恐惧并立刻合上它', scores: { fool: 2, moon: 3, ohno: 2 } },
+                    { text: '大声朗读，看看会发生什么', scores: { mage: 3, nyar: 3, cthu: 2 } },
+                    { text: '拍照记录，事后慢慢研究', scores: { herm: 3, thin: 2, temp: 1 } },
+                ]
+            },
+            {
+                text: '面对一扇从未见过的古老之门，你的第一反应是...',
+                options: [
+                    { text: '立刻推开它，不管门后是什么', scores: { fool: 3, gogo: 3, deep: 2 } },
+                    { text: '先观察门上的符文和痕迹', scores: { herm: 3, hier: 2, yogs: 2 } },
+                    { text: '感到一种不可抗拒的召唤', scores: { cthu: 3, shub: 2, azat: 2 } },
+                    { text: '远离它，有些门不该被打开', scores: { malo: 2, dead: 2, woc: 2 } },
+                ]
+            },
+            {
+                text: '你认为疯狂是...',
+                options: [
+                    { text: '人类最危险的敌人，必须被遏制', scores: { just: 3, thin: 2, boss: 2 } },
+                    { text: '通往真理的另一扇门', scores: { cthu: 3, yogs: 2, azat: 3 } },
+                    { text: '创造力的源泉，不应被过度压制', scores: { moon: 3, star: 2, hps: 2 } },
+                    { text: '人类自以为是的另一种表现', scores: { nyar: 3, mage: 2, shit: 2 } },
+                ]
+            },
+            {
+                text: '当恐惧袭来时，你会...',
+                options: [
+                    { text: '寻找朋友，和他们一起面对', scores: { lovr: 3, mum: 2, than: 2 } },
+                    { text: '独自承受，在恐惧中寻找平静', scores: { herm: 3, monk: 3, solo: 2 } },
+                    { text: '把它写下来，变成故事或画作', scores: { mage: 3, shub: 2, fake: 2 } },
+                    { text: '向某种更高的存在祈求庇护', scores: { yogs: 3, cthu: 2, deep: 2 } },
+                ]
+            },
+            {
+                text: '如果必须承受一种诅咒，你会选择...',
+                options: [
+                    { text: '预知未来，但无法改变任何事', scores: { yogs: 3, star: 2, hps: 2 } },
+                    { text: '看穿人心，但永远不能相信任何人', scores: { nyar: 3, mage: 3, ctrl: 2 } },
+                    { text: '永生不死，但看着所有爱的人离去', scores: { cthu: 2, shub: 3, dead: 2 } },
+                    { text: '成为他人梦想的造物主', scores: { azat: 3, mage: 2, boss: 2 } },
+                ]
+            },
+            {
+                text: '在一场危机中，你通常...',
+                options: [
+                    { text: '站出来指挥，带领大家脱险', scores: { boss: 3, emp: 3, ctrl: 2 } },
+                    { text: '默默观察局势，等待最佳时机', scores: { herm: 3, thin: 3, dead: 2 } },
+                    { text: '安抚众人情绪，维持秩序', scores: { temp: 3, ojbk: 2, than: 2 } },
+                    { text: '我行我素，不在乎别人的看法', scores: { shit: 3, cthu: 2, ims: 2 } },
+                ]
+            },
+            {
+                text: '你对时间的看法是...',
+                options: [
+                    { text: '线性的河流，一切终将流向终点', scores: { dead: 3, monk: 3, world: 2 } },
+                    { text: '令人恐惧的牢笼，困住所有人的存在', scores: { ohno: 3, woc: 2, fool: 1 } },
+                    { text: '循环的圆环，死亡只是另一场开始', scores: { judg: 3, yogs: 2, hier: 2 } },
+                    { text: '一种幻觉，过去和未来同时存在', scores: { azat: 2, dead: 2, zzzz: 2 } },
+                ]
+            },
+            {
+                text: '面对古老的传统和习俗，你的态度是...',
+                options: [
+                    { text: '尊重并传承，传统蕴含着智慧', scores: { just: 3, boss: 2, hier: 2 } },
+                    { text: '质疑并打破，传统往往是束缚', scores: { shit: 3, devl: 2, fuck: 2 } },
+                    { text: '取其精华，在旧框架中寻找新可能', scores: { mage: 3, nyar: 2, fake: 2 } },
+                    { text: '无所谓，我只遵从内心的声音', scores: { azat: 3, cthu: 2, fool: 2 } },
+                ]
+            },
+            {
+                text: '当你产生幻觉时，你看到的通常是...',
+                options: [
+                    { text: '清晰的指引，仿佛有人在告诉我什么', scores: { yogs: 3, star: 2, moon: 2 } },
+                    { text: '扭曲的怪物和不可名状的场景', scores: { cthu: 3, azat: 2, shub: 2 } },
+                    { text: '一片空白，我很少产生幻觉', scores: { dead: 2, zzzz: 3, emp: 1 } },
+                    { text: '另一个世界，我在那里更真实', scores: { deep: 3, nyar: 2, fake: 2 } },
+                ]
+            },
+            {
+                text: '如果你发现了一扇从未打开过的门，你会...',
+                options: [
+                    { text: '立刻进去探索，里面一定藏着秘密', scores: { yogs: 3, thin: 3, mage: 2 } },
+                    { text: '先做好充分准备再决定是否进入', scores: { hier: 3, ctrl: 2, just: 2 } },
+                    { text: '设法把门占为己有，不让别人知道', scores: { nyar: 3, mage: 2, boss: 2 } },
+                    { text: '假装没看到，当作它不存在', scores: { ohno: 3, malo: 2, woc: 2 } },
+                ]
+            },
+            {
+                text: '你认为人类在深渊中的意义是...',
+                options: [
+                    { text: '被选中者，注定要揭开宇宙的秘密', scores: { star: 2, char: 3, sun: 2 } },
+                    { text: '毫无意义，只是深渊中的微尘', scores: { azat: 3, shit: 2, dead: 2 } },
+                    { text: '被观察的对象，像是实验中的小白鼠', scores: { nyar: 3, cthu: 2, shub: 2 } },
+                    { text: '万物中的一员，与深渊共生共存', scores: { just: 2, temp: 2, monk: 2 } },
+                ]
+            },
+            {
+                text: '当你必须做出无法回头的决定时，你更依赖...',
+                options: [
+                    { text: '严密的推理，列出所有利弊', scores: { thin: 3, boss: 2, just: 2 } },
+                    { text: '内心的声音，直觉从不会骗我', scores: { moon: 3, hps: 2, star: 2 } },
+                    { text: '抛硬币，让命运来决定', scores: { whel: 3, azat: 2, fool: 2 } },
+                    { text: '询问信任的人，听听他们的看法', scores: { hier: 2, than: 2, atm: 1 } },
+                ]
+            },
+            {
+                text: '在音乐中，你更被什么打动...',
+                options: [
+                    { text: '严谨的结构，和谐的旋律与节奏', scores: { emp: 3, just: 2, sun: 2 } },
+                    { text: '混乱的噪音，打破一切常规的实验音乐', scores: { azat: 3, cthu: 2, mage: 2 } },
+                    { text: '神秘的氛围，仿佛来自另一个世界的旋律', scores: { yogs: 3, moon: 2, herm: 2 } },
+                    { text: '原始的节奏，来自本能的律动与呐喊', scores: { shub: 3, devl: 2, lovr: 2 } },
+                ]
+            },
+            {
+                text: '如果必须举行一场召唤仪式，你会召唤...',
+                options: [
+                    { text: '全知者，让它告诉我宇宙的所有秘密', scores: { yogs: 5, thin: 2, hps: 2 } },
+                    { text: '千面之神，借它的力量操控众生', scores: { nyar: 5, mage: 2, ctrl: 2 } },
+                    { text: '沉睡之主，感受来自深海的古老力量', scores: { cthu: 5, deep: 2, shub: 1 } },
+                    { text: '生命之母，让万物重新焕发生机', scores: { shub: 5, emp: 2, lovr: 1 } },
+                ]
+            },
+            {
+                text: '面对无法逃避的宿命，你会...',
+                options: [
+                    { text: '坦然接受，从中寻找成长', scores: { judg: 3, hang: 2, monk: 2 } },
+                    { text: '拼尽全力抗争，哪怕知道结局已定', scores: { char: 3, fuck: 2, gogo: 2 } },
+                    { text: '冷眼旁观，觉得一切都很荒诞', scores: { azat: 3, dead: 2, ojbk: 2 } },
+                    { text: '试图找到漏洞，改变命运走向', scores: { mage: 3, nyar: 2, boss: 2 } },
+                ]
+            },
+            {
+                text: '在团队中，你最看重同伴的...',
+                options: [
+                    { text: '灵魂的共鸣，能理解我的内心世界', scores: { lovr: 2, hps: 2 } },
+                    { text: '忠诚与担当，危难时刻不会抛下我', scores: { just: 2, boss: 2, mum: 2 } },
+                    { text: '冒险精神，永远愿意尝试新事物', scores: { shub: 2, gogo: 2, mage: 2 } },
+                    { text: '尊重边界，不会干涉我的私人空间', scores: { solo: 3, herm: 2, monk: 2 } },
+                ]
+            },
+            {
+                text: '当诱惑摆在面前时，你通常会...',
+                options: [
+                    { text: '直接抓住它，机会不会再来', scores: { fuck: 3, char: 2, boss: 2 } },
+                    { text: '克制自己，冷静分析后果', scores: { ctrl: 3, dead: 2, ojbk: 2 } },
+                    { text: '把诱惑变成动力，推动自己前进', scores: { mage: 2, boss: 3, shit: 2 } },
+                    { text: '思考诱惑背后的本质，理解它为何存在', scores: { thin: 3, herm: 2, temp: 2 } },
+                ]
+            },
+            {
+                text: '你对未来的看法是...',
+                options: [
+                    { text: '充满可能，由我自己书写', scores: { char: 2, gogo: 2, judg: 2 } },
+                    { text: '充满未知，但我已做好准备', scores: { hang: 3, ohno: 2, poor: 2 } },
+                    { text: '像一场梦，未必真实', scores: { moon: 3, yogs: 2, fake: 2 } },
+                    { text: '不重要，当下才是唯一真实', scores: { azat: 2, dead: 2, zzzz: 2 } },
+                ]
+            },
+            {
+                text: '如果深渊在你面前敞开，你会...',
+                options: [
+                    { text: '纵身跃入，探索其中奥秘', scores: { char: 3, boss: 3, than: 2 } },
+                    { text: '拉住身边最亲近的人一起', scores: { lovr: 2, mum: 2 } },
+                    { text: '静静站立，等待深渊的召唤', scores: { monk: 3, dead: 2, azat: 2 } },
+                    { text: '寻找深渊形成的原因', scores: { yogs: 3, mage: 2, thin: 2 } },
+                ]
+            },
+            {
+                text: '你认为真正的力量来自于...',
+                options: [
+                    { text: '知识与理性，理解世界的规律', scores: { thin: 3, boss: 2, mage: 2 } },
+                    { text: '经历与磨难，越痛苦越强大', scores: { hang: 3, star: 2, judg: 2 } },
+                    { text: '与某种更高存在的连接', scores: { yogs: 3, cthu: 2, hier: 2 } },
+                    { text: '放下执念，接纳一切不确定性', scores: { azat: 3, fool: 2, shit: 2 } },
+                ]
+            },
+            {
+                text: '如果你在镜中看到了另一个自己，你会...',
+                options: [
+                    { text: '试图与它交流，了解它的世界', scores: { yogs: 3, hps: 2, thin: 2 } },
+                    { text: '砸碎镜子，有些存在不该被看见', scores: { hier: 3, ctrl: 2, malo: 1 } },
+                    { text: '编造一个关于它的故事', scores: { nyar: 3, mage: 2, fake: 1 } },
+                    { text: '当作幻觉，不再看它', scores: { herm: 3, dead: 1, woc: 1 } },
+                ]
+            },
+            {
+                text: '如果必须放弃一样东西来拯救所有人，你会放弃...',
+                options: [
+                    { text: '自己的自由意志，成为众人的工具', scores: { just: 3, boss: 2, char: 1 } },
+                    { text: '拒绝，没有人该被牺牲', scores: { lovr: 3, monk: 2, world: 1 } },
+                    { text: '寻找一个两全其美的办法', scores: { temp: 3, nyar: 2, mage: 1 } },
+                    { text: '让随机来决定，听天由命', scores: { whel: 3, azat: 2, fool: 1 } },
+                ]
+            },
+            {
+                text: '你如何看待预言？',
+                options: [
+                    { text: '它是警告，值得认真对待', scores: { mage: 3, azat: 2, shub: 1 } },
+                    { text: '它是迷信，不应左右我们的选择', scores: { ctrl: 3, just: 2, thin: 1 } },
+                    { text: '它是可能性的揭示，不是绝对的命运', scores: { sun: 3, star: 2, emp: 1 } },
+                    { text: '它是现实的碎片，掺杂着真假', scores: { moon: 3, nyar: 2, fool: 1 } },
+                ]
+            },
+            {
+                text: '如果真相会伤害你爱的人，你会...',
+                options: [
+                    { text: '告诉他们，真相终将浮出水面', scores: { yogs: 3, cthu: 2, mage: 1 } },
+                    { text: '隐瞒，保护他们免受痛苦', scores: { ctrl: 3, sun: 2, lovr: 1 } },
+                    { text: '委婉暗示，让他们自己发现', scores: { lovr: 3, hier: 2, char: 1 } },
+                    { text: '质疑真相本身，也许没有绝对的对错', scores: { nyar: 3, moon: 2, azat: 1 } },
+                ]
+            },
+            {
+                text: '深夜，你听到门外传来奇怪的低语，你会...',
+                options: [
+                    { text: '开门查看，想知道是谁在说话', scores: { yogs: 3, char: 2, mage: 1 } },
+                    { text: '锁紧门窗，装作没听见', scores: { hier: 3, malo: 2, ctrl: 1 } },
+                    { text: '贴在门上偷听，试图辨认内容', scores: { herm: 3, thin: 2, nyar: 1 } },
+                    { text: '感到一种奇怪的亲切感，仿佛那是老朋友', scores: { cthu: 3, deep: 2, moon: 1 } },
+                ]
+            },
+            {
+                text: '你相信命运吗？',
+                options: [
+                    { text: '相信，一切都是命中注定的', scores: { lovr: 3, just: 2, sun: 1 } },
+                    { text: '不相信，人可以改写自己的命运', scores: { nyar: 3, moon: 2, azat: 1 } },
+                    { text: '不确定，也许命运只是概率的错觉', scores: { thin: 3, dead: 2, yogs: 1 } },
+                    { text: '相信有些命运来自比今生更古老的约定', scores: { yogs: 3, cthu: 2, hps: 1 } },
+                ]
+            },
+        ];
+
         // ==================== 状态管理 ====================
-        
+
+        let activeQuestions = [];
         let currentQuestion = 0;
         let userScores = {};
         let userAnswers = [];
@@ -2737,19 +2985,41 @@
             window.scrollTo(0, 0);
         }
 
+        function shuffleArray(arr) {
+            const a = arr.slice();
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function prepareQuestions() {
+            // 随机选择题目集 A 或 B
+            const baseSet = Math.random() < 0.5 ? questions : questionsSetB;
+            // 深拷贝并打乱题目顺序
+            const shuffled = shuffleArray(baseSet).map(q => ({
+                text: q.text,
+                options: shuffleArray(q.options.map(o => ({ text: o.text, scores: { ...o.scores } })))
+            }));
+            return shuffled;
+        }
+
         function startQuiz() {
             currentQuestion = 0;
             userScores = {};
+            userAnswers = [];
+            activeQuestions = prepareQuestions();
             showPage('quizPage');
             showQuestion();
         }
 
         function showQuestion() {
-            const question = questions[currentQuestion];
-            const progress = ((currentQuestion + 1) / questions.length) * 100;
-            
+            const question = activeQuestions[currentQuestion];
+            const progress = ((currentQuestion + 1) / activeQuestions.length) * 100;
+
             document.getElementById('progressFill').style.width = progress + '%';
-            document.getElementById('progressText').textContent = `问题 ${currentQuestion + 1} / 30`;
+            document.getElementById('progressText').textContent = `问题 ${currentQuestion + 1} / ${activeQuestions.length}`;
             document.getElementById('questionNumber').textContent = `QUESTION ${toRoman(currentQuestion + 1)}`;
             document.getElementById('questionText').textContent = question.text;
             
@@ -2787,7 +3057,7 @@
             const nextBtn = document.createElement('button');
             nextBtn.className = 'nav-btn next-btn';
             nextBtn.textContent = '下一题';
-            nextBtn.disabled = currentQuestion >= questions.length - 1 || userAnswers[currentQuestion] === undefined;
+            nextBtn.disabled = currentQuestion >= activeQuestions.length - 1 || userAnswers[currentQuestion] === undefined;
             nextBtn.onclick = goToNextQuestion;
             
             navContainer.appendChild(prevBtn);
@@ -2800,24 +3070,8 @@
         }
 
         function selectOption(optionIndex) {
-            const question = questions[currentQuestion];
-            const selectedOption = question.options[optionIndex];
-            
-            // 如果之前已经答过这题，先减去旧分数
-            if (userAnswers[currentQuestion] !== undefined) {
-                const oldOption = question.options[userAnswers[currentQuestion]];
-                for (let [key, value] of Object.entries(oldOption.scores)) {
-                    userScores[key] = (userScores[key] || 0) - value;
-                }
-            }
-            
-            // 记录答案
+            // 只记录答案，分数在最终结算时统一计算
             userAnswers[currentQuestion] = optionIndex;
-            
-            // 累加分数
-            for (let [key, value] of Object.entries(selectedOption.scores)) {
-                userScores[key] = (userScores[key] || 0) + value;
-            }
             
             // 更新选中样式
             document.querySelectorAll('.option-btn').forEach((btn, idx) => {
@@ -2833,7 +3087,7 @@
             if (nextBtn) nextBtn.disabled = false;
             
             // 如果是最后一题，延迟后显示结果
-            if (currentQuestion >= questions.length - 1) {
+            if (currentQuestion >= activeQuestions.length - 1) {
                 setTimeout(() => {
                     showLoading();
                 }, 400);
@@ -2849,22 +3103,12 @@
 
         function goToPreviousQuestion() {
             if (currentQuestion <= 0) return;
-            
-            // 减去当前题的分数
-            const question = questions[currentQuestion];
-            if (userAnswers[currentQuestion] !== undefined) {
-                const oldOption = question.options[userAnswers[currentQuestion]];
-                for (let [key, value] of Object.entries(oldOption.scores)) {
-                    userScores[key] = (userScores[key] || 0) - value;
-                }
-            }
-            
             currentQuestion--;
             showQuestion();
         }
 
         function goToNextQuestion() {
-            if (currentQuestion >= questions.length - 1) return;
+            if (currentQuestion >= activeQuestions.length - 1) return;
             currentQuestion++;
             showQuestion();
         }
@@ -2895,6 +3139,17 @@
         }
 
         function calculateAndShowResult() {
+            // 根据用户答案统一计算分数（避免前进后退产生负值）
+            userScores = {};
+            userAnswers.forEach((optionIndex, qIdx) => {
+                if (optionIndex !== undefined && activeQuestions[qIdx]) {
+                    const opt = activeQuestions[qIdx].options[optionIndex];
+                    for (let [key, value] of Object.entries(opt.scores)) {
+                        userScores[key] = (userScores[key] || 0) + value;
+                    }
+                }
+            });
+
             // 找到得分最高的原型
             let bestMatch = null;
             let maxScore = -1;
